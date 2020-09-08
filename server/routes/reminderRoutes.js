@@ -66,6 +66,7 @@ reminderRouter.get("/:username", (req, res) => {
 // “reminders/:parentusername/:reminderid
 // Delete reminder from parent’s reminder array
 // Delete from reminders database
+//cascade functionality
 
 reminderRouter.delete("/:username/:reminderId", (req, res) => {
   Reminder.findOneAndDelete(
@@ -85,17 +86,25 @@ reminderRouter.delete("/:username/:reminderId", (req, res) => {
             return res.status(404).json({ message: "profile not found" });
           } else {
             const reminders = parent.reminders;
-            const newReminders = reminders.filter(
-              (reminderId) => reminderId !== req.params.reminderId
-            );
+            const newReminders = reminders.filter((reminderId) => {
+              console.log(
+                reminderId._id.toString(),
 
+                req.params.reminderId === reminderId._id.toString()
+              );
+              return reminderId._id.toString() !== req.params.reminderId;
+            });
+            console.log(newReminders);
             Parent.findOneAndUpdate(
               { username: req.params.username },
-              { reminders: newReminders },
+              { $set: { reminders: newReminders } },
               (error, oldParent) => {
+                // console.log(error);
+                // console.log(oldParent);
                 if (error) {
                   return res.status(404).json({ message: "profile not found" });
                 }
+
                 if (!oldParent) {
                   return res.status(404).json({ message: "profile not found" });
                 } else {

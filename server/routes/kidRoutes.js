@@ -125,41 +125,36 @@ kidRouter.delete("/:username/:kidId", (req, res) => {
     }
     if (!deletedKid) {
       return res.status(400).json({ message: "delete unsuccessful" });
+    } else {
+      Parent.findOne({ username: req.params.username }, (error, parent) => {
+        if (error) {
+          return res.status(500).json({ message: error });
+        }
+
+        if (!parent) {
+          return res.status(404).json({ message: "profile not found" });
+        } else {
+          const kids = parent.kids;
+          const newKids = kids.filter((kidId) => {
+            return kidId._id.toString() !== req.params.kidId;
+          });
+          Parent.findOneAndUpdate(
+            { username: Username },
+            { kids: newKids },
+            (error, oldParent) => {
+              if (error) {
+                return res.status(404).json({ message: "profile not found" });
+              }
+              if (!oldParent) {
+                return res.status(404).json({ message: "profile not found" });
+              } else {
+                return res.status(200).json({ message: "child deleted!" });
+              }
+            }
+          );
+        }
+      });
     }
-
-    Parent.findOne({ username: req.params.username }, (error, parent) => {
-      if (error) {
-        return res.status(500).json({ message: error });
-      }
-
-      if (!parent) {
-        return res.status(404).json({ message: "profile not found" });
-      }
-
-      const kids = parent.kids;
-      console.log("your kids", kids);
-      const newKids = [];
-      for (let i = 0; i < kids.length; i++) {
-        if (kids[i] !== KidId) {
-          newKids.push(kids[i]);
-        }
-      }
-      // const newKids = kids.filter((kidId) => kidId !== KidId);
-      Parent.findOneAndUpdate(
-        { username: Username },
-        { kids: newKids },
-        (error, oldParent) => {
-          if (error) {
-            return res.status(404).json({ message: "profile not found" });
-          }
-          if (!oldParent) {
-            return res.status(404).json({ message: "profile not found" });
-          } else {
-            return res.status(200).json({ message: "child deleted!" });
-          }
-        }
-      );
-    });
   });
 });
 
