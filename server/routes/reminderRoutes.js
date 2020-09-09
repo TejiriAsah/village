@@ -92,15 +92,12 @@ reminderRouter.delete("/:username/:reminderId", (req, res) => {
 
                 req.params.reminderId === reminderId._id.toString()
               );
-              return reminderId._id.toString() !== req.params.reminderId;
             });
             console.log(newReminders);
             Parent.findOneAndUpdate(
               { username: req.params.username },
               { $set: { reminders: newReminders } },
               (error, oldParent) => {
-                // console.log(error);
-                // console.log(oldParent);
                 if (error) {
                   return res.status(404).json({ message: "profile not found" });
                 }
