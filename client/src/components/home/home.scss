@@ -1,0 +1,35 @@
+body {
+  background-color: #453f0c;
+  color: #ffffff;
+  margin-left: 2rem;
+  margin-right: 2rem;
+}
+.profile {
+  margin-top: 2rem;
+  width: 12rem;
+  height: 15rem;
+  border-radius: 20px;
+}
+
+.navbar {
+  border-right: 1px solid black;
+  width: 30%;
+
+  &__list {
+    margin-top: 5rem;
+    padding-left: 0rem;
+  }
+  &__item {
+    list-style: none;
+    margin-top: 0.3rem;
+    margin-left: 1rem;
+    font-weight: 500;
+  }
+  &__icon {
+    width: 1.2rem;
+    height: 1.5rem;
+  }
+  &__page {
+    display: flex;
+  }
+}
