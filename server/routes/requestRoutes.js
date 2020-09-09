@@ -179,8 +179,18 @@ requestRouter.patch("/cancel/:username/:tousername", (req, res) => {
 // “/requests/:parentsusername”
 // Return the list of requests
 
-// requestRouter.get("/:username", (req,res) => {
-
-// })
+requestRouter.get("/:username", (req, res) => {
+  Parent.findOne({ username: req.params.username }, (error, parent) => {
+    if (error) {
+      return res.status(500).json({ message: error });
+    }
+    if (!parent) {
+      return res.status(404).json({ message: "profile not found" });
+    } else {
+      const requests = parent.requests;
+      return res.status(200).json(requests);
+    }
+  });
+});
 
 module.exports = requestRouter;
