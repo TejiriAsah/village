@@ -1,0 +1,28 @@
+.kidsProfile {
+  margin-left: 2.5rem;
+  // margin-right: 2rem;
+  &__info {
+    margin-bottom: 2rem;
+  }
+  &__info:last-child {
+    margin-bottom: 0rem;
+  }
+  &__notes {
+    width: 28rem;
+    height: 4rem;
+    background-color: #ffffff;
+    border: 2px solid #7c423c;
+    border-radius: 10px;
+  }
+  &__editBtn {
+    color: #ffffff;
+    background-color: #473335;
+    width: 7rem;
+    height: 2rem;
+    margin-top: 1rem;
+    margin-left: 26rem;
+
+    border: 0;
+    border-radius: 20px;
+  }
+}

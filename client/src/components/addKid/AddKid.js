@@ -28,7 +28,7 @@ class AddKid extends React.Component {
         </form>
         <div className="addKid__btn">
           <button className="btn-style2">Cancel</button>
-          <button className="btn-style2">Save</button>
+          <button className="btn-style2">Add</button>
         </div>
       </div>
     );

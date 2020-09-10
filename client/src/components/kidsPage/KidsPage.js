@@ -14,13 +14,15 @@ class KidsPage extends React.Component {
           <button className="btn-style2"> - remove kid</button>
         </div>
         <div>
-          <div className="kid-card">
-            <img src={kid} alt="profle" className="kid-card__image" />
-            <div className="kid-card__info">
-              <div className="kid-card__name">Thomas</div>
-              <button className="kid-card__shareBtn">share ?</button>
+          <Link to="/kids/child">
+            <div className="kid-card">
+              <img src={kid} alt="profle" className="kid-card__image" />
+              <div className="kid-card__info">
+                <div className="kid-card__name">Thomas</div>
+                <button className="kid-card__shareBtn">share ?</button>
+              </div>
             </div>
-          </div>
+          </Link>
         </div>
       </>
     );
