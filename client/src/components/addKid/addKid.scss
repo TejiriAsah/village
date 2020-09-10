@@ -1,0 +1,28 @@
+.tesst {
+  // background-color: black;
+  padding-bottom: 2rem;
+  color: #7c423c;
+}
+
+.addKid {
+  &__header {
+    margin-left: 1rem;
+    margin-top: 0rem;
+  }
+  &__btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 3rem;
+    margin-right: 2rem;
+  }
+  &__nav {
+    display: flex;
+    margin-top: 2rem;
+  }
+}
+.goBack {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+}

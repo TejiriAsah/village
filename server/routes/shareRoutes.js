@@ -80,4 +80,6 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
 // Delete kid from sharee’s kid’s array
 // Automatically on expiration
 
+// shareRouter.delete("/:kidId")
+
 module.exports = shareRouter;

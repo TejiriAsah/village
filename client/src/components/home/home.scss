@@ -1,14 +1,9 @@
-body {
-  background-color: #453f0c;
-  color: #ffffff;
-  margin-left: 2rem;
-  margin-right: 2rem;
-}
 .profile {
   margin-top: 2rem;
   width: 12rem;
   height: 15rem;
   border-radius: 20px;
+  // margin-left: 1rem;
 }
 .link-style {
   color: #ffffff;
@@ -17,7 +12,13 @@ body {
 
 .navbar {
   border-right: 1px solid black;
-  width: 30%;
+  // width: 30%;
+  width: 14rem;
+  box-shadow: 3px 0px 20px #888888;
+  background-color: #7c423c;
+  &__profile {
+    margin-left: 1rem;
+  }
 
   &__list {
     margin-top: 5rem;
@@ -32,6 +33,7 @@ body {
   &__icon {
     width: 1.2rem;
     height: 1.5rem;
+    color: white;
   }
   &__page {
     display: flex;

@@ -1,0 +1,53 @@
+.button-div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 13rem;
+}
+
+.kid-card {
+  width: 10rem;
+  height: 17rem;
+  margin-top: 3rem;
+  margin-left: 2rem;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+
+  &__image {
+    object-fit: cover;
+    border-radius: 15px 15px 0px 0px;
+    height: 12rem;
+  }
+  &__name {
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+  &__info {
+    // margin-top: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 5rem;
+    border-radius: 0px 0px 15px 15px;
+    background-color: #7c423c;
+  }
+  &__shareBtn {
+    border: 0;
+    margin-top: 0.5rem;
+    background-color: #7c423c;
+    color: #ffffff;
+    text-decoration-line: underline;
+  }
+}
+
+.btn-style2 {
+  color: #ffffff;
+  background-color: #473335;
+  width: 7rem;
+  height: 2rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  border: 0;
+  border-radius: 20px;
+}
