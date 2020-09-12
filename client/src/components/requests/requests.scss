@@ -1,0 +1,46 @@
+.requests {
+  color: #7c423c;
+  margin-left: 2rem;
+  display: flex;
+  flex-direction: column;
+
+  flex-wrap: wrap;
+
+  &__heading {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  &__image {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 15px;
+    border: 1px solid black;
+    object-fit: contain;
+    margin-top: 1rem;
+  }
+}
+.request-card {
+  display: flex;
+
+  &__content {
+    width: 20rem;
+    margin-left: 1rem;
+  }
+  &__btn {
+    display: flex;
+    justify-content: space-around;
+  }
+  &__info {
+    margin-left: 1rem;
+  }
+}
+
+.btn-style3 {
+  color: #ffffff;
+  background-color: #473335;
+  width: 10rem;
+  height: 1.5rem;
+  margin-left: 1rem;
+  border: 0;
+  border-radius: 15px;
+}

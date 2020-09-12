@@ -154,10 +154,10 @@ requestRouter.patch("/cancel/:username/:tousername", (req, res) => {
     } else {
       const requests = parent.requests;
       const newRequests = requests.filter((request) => {
-        return request.username !== req.params.tousername;
+        return request.username !== req.params.username;
       });
       Parent.findOneAndUpdate(
-        { username: req.params.username },
+        { username: req.params.tousername },
         { requests: newRequests },
         (error, oldParent) => {
           if (error) {

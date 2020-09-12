@@ -39,7 +39,9 @@ const Home = () => {
         </div>
         <div className="navbar__page">
           <img src={profile} alt="profile icon" className="navbar__icon" />
-          <p className="navbar__item">Requests</p>
+          <Link to="/requests" className="link-style">
+            <p className="navbar__item">Requests</p>
+          </Link>
         </div>
         <div className="navbar__page">
           <img src={logout} alt="logout" className="navbar__icon" />

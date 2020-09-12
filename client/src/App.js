@@ -7,6 +7,8 @@ import KidsPage from "./components/kidsPage/KidsPage";
 import AddKid from "./components/addKid/AddKid";
 import KidsProfile from "./components/kidsProfile/KidsProfile";
 import EditKid from "./components/editKid/EditKid";
+import Modal from "./components/modal/Modal";
+import Requests from "./components/requests/Requests";
 
 function App() {
   return (
@@ -20,6 +22,8 @@ function App() {
             <Route path="/kids/add" component={AddKid} />
             <Route path="/kids/child/:id" exact component={KidsProfile} />
             <Route path="/kids/edit/:id" component={EditKid} />
+            <Route path="/changepassword" component={Modal} />
+            <Route path="/requests" component={Requests} />
           </Switch>
         </div>
       </div>
