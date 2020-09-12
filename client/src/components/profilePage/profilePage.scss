@@ -9,13 +9,20 @@
   border: 0;
   border-radius: 20px;
 }
-.profile__header {
-  margin-left: 2rem;
-  margin-bottom: 2.5rem;
-}
 
 .test {
   color: #7c423c;
   margin-top: 3rem;
   width: 496px;
+}
+
+.profile {
+  margin-left: 2.5rem;
+  &__header {
+    margin-left: 2rem;
+    margin-bottom: 2.5rem;
+  }
+  &__info {
+    margin-bottom: 2rem;
+  }
 }

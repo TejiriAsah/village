@@ -19,10 +19,23 @@
     display: flex;
     margin-top: 2rem;
   }
+  &__labelTag {
+    margin-left: 2rem;
+  }
 }
 .goBack {
   width: 1rem;
   height: 1rem;
   margin-top: 0.5rem;
   margin-left: 1rem;
+}
+
+.bob {
+  width: 31rem;
+  height: 2rem;
+  border: 0;
+  border-bottom: 1px solid #7c423c;
+  background-color: #fef4ec;
+  padding-left: 0.5rem;
+  margin: 1rem 1.5rem;
 }

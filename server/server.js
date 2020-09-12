@@ -13,7 +13,6 @@ const reminderRoutes = require("./routes/reminderRoutes");
 const postRoutes = require("./routes/postRoutes");
 const requestRoutes = require("./routes/requestRoutes");
 const shareRoutes = require("./routes/shareRoutes");
-const shareRouter = require("./routes/shareRoutes");
 
 mongoose.connect(
   "mongodb+srv://village:village@cluster0.p9psx.mongodb.net/village?retryWrites=true&w=majority",

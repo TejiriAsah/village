@@ -13,7 +13,13 @@ import "./inputBox.scss";
 const InputBox = (props) => {
   return (
     <>
-      <input type="text" className="bob" placeholder={props.placeholder} />
+      <input
+        type="text"
+        className="bob"
+        placeholder={props.placeholder}
+        value={props.valuer}
+        onChange={props.changer}
+      />
     </>
   );
 };

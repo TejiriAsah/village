@@ -8,6 +8,7 @@ const Kid = require("../models/Kid");
 kidRouter.post("/:username", (req, res) => {
   Parent.findOne({ username: req.params.username }, (error, parent) => {
     if (error) {
+      console.log("line 11", error);
       return res.status(500).json({ message: error });
     }
     if (!parent) {
@@ -25,6 +26,7 @@ kidRouter.post("/:username", (req, res) => {
       });
       newKid.save((error) => {
         if (error) {
+          console.log("line 29", error);
           return res.status(500).send(error);
         } else {
           const kidId = newKid._id;
@@ -93,11 +95,12 @@ kidRouter.put("/edit/:kidId", (req, res) => {
       allergies: req.body.allergies,
       dietaryRestrictions: req.body.dietaryRestrictions,
       medications: req.body.medications,
-      activities: req.body.allergies,
+      activities: req.body.activities,
       additionalNotes: req.body.additionalNotes,
     },
     (error, oldKid) => {
       if (error) {
+        console.log("error is", error);
         return res.status(500).json({ message: error });
       }
       if (!oldKid) {

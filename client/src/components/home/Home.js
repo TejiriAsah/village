@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <div className="navbar">
       <div className="navbar__profile">
-        <img src={dad} alt="profile" className="profile" />
+        <img src={dad} alt="profile" className="profilePic" />
         <p>Captain Zaraki</p>
         <p>@tobiasWole__</p>
         <p>18 branches</p>
