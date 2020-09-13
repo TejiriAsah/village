@@ -1,27 +1,24 @@
 .profilePic {
   margin-top: 2rem;
-  width: 12rem;
-  height: 15rem;
-  border-radius: 20px;
-  // margin-left: 1rem;
+  width: 10rem;
+  border: 1px solid black;
+  border-radius: 40rem;
+  object-fit: contain;
 }
 .link-style {
-  color: #ffffff;
+  color: #552534;
   text-decoration: none;
 }
 
 .navbar {
   border-right: 1px solid black;
-  // width: 30%;
-  width: 14rem;
+  width: 12rem;
+  height: 100vh;
   box-shadow: 3px 0px 20px #888888;
-  background-color: #7c423c;
-  &__profile {
-    margin-left: 1rem;
-  }
-
+  background-color: #ffffff;
+  padding-left: 1rem;
+  //#47a4ae,526a24,b1cce7,#552534
   &__list {
-    margin-top: 5rem;
     padding-left: 0rem;
   }
   &__item {
@@ -37,5 +34,17 @@
   }
   &__page {
     display: flex;
+  }
+}
+
+.profile {
+  &__container {
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+  }
+  &__content {
+    margin: 0;
+    font-weight: 600;
+    color: #552534;
   }
 }

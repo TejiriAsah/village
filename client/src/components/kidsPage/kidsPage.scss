@@ -1,7 +1,5 @@
-.button-div {
-  display: flex;
-  justify-content: space-between;
-  margin-left: 13rem;
+.kids-div {
+  width: 100%;
 }
 
 .kid-card {
@@ -10,6 +8,7 @@
   margin-top: 3rem;
   margin-left: 2rem;
   border-radius: 15px;
+  border: 1px solid white;
   display: flex;
   flex-direction: column;
 
@@ -28,6 +27,7 @@
     font-weight: 500;
     text-align: center;
     margin-top: 0.5rem;
+    color: #552534;
   }
   &__info {
     // margin-top: 1.5rem;
@@ -35,20 +35,26 @@
     flex-direction: column;
     height: 5rem;
     border-radius: 0px 0px 15px 15px;
-    background-color: #7c423c;
+    background-color: #ffffff;
   }
   &__shareBtn {
     border: 0;
     margin-top: 0.5rem;
-    background-color: #7c423c;
-    color: #ffffff;
+    background-color: #ffffff;
+    color: #552534;
     text-decoration-line: underline;
   }
 }
 
+.button-div {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 13rem;
+}
+
 .btn-style2 {
-  color: #ffffff;
-  background-color: #473335;
+  color: #552534;
+  background-color: #ffffff;
   width: 7rem;
   height: 2rem;
   margin-top: 1rem;

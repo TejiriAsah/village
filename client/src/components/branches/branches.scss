@@ -1,0 +1,23 @@
+@import "../partials/variables";
+
+.branches {
+  margin-left: 3rem;
+  &__heading {
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+}
+
+.branch-card {
+  width: 30rem;
+  display: flex;
+  border-bottom: 1px solid $background;
+  padding-bottom: 0.5rem;
+  &__content {
+    width: 20rem;
+    margin-left: 1rem;
+  }
+  &__info {
+    margin-left: 1rem;
+  }
+}

@@ -29,7 +29,7 @@ class KidsPage extends React.Component {
   render() {
     let kids = this.state.kids;
     return (
-      <>
+      <div className="kids-div">
         <div className="button-div">
           <Link to="/kids/add">
             <button className="btn-style2"> + add a kid</button>
@@ -55,7 +55,7 @@ class KidsPage extends React.Component {
             );
           })}
         </div>
-      </>
+      </div>
     );
   }
 }

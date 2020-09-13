@@ -1,5 +1,4 @@
 .requests {
-  color: #7c423c;
   margin-left: 2rem;
   display: flex;
   flex-direction: column;
@@ -13,9 +12,9 @@
   &__image {
     width: 4rem;
     height: 4rem;
-    border-radius: 15px;
+    border-radius: 30rem;
     border: 1px solid black;
-    object-fit: contain;
+    // object-fit: contain;
     margin-top: 1rem;
   }
 }
@@ -36,9 +35,9 @@
 }
 
 .btn-style3 {
-  color: #ffffff;
-  background-color: #473335;
-  width: 10rem;
+  color: #552534;
+  background-color: #ffffff;
+  width: 8rem;
   height: 1.5rem;
   margin-left: 1rem;
   border: 0;

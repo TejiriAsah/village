@@ -2,9 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./home.scss";
 import dad from "../../assets/Zaraki.png";
-import profile from "../../assets/profile.svg";
-import kids from "../../assets/kids.png";
-import reminder from "../../assets/reminders.png";
+import hut from "../../assets/hut.png";
+import branch2 from "../../assets/branch2.png";
+import profile from "../../assets/profile.png";
+import kids from "../../assets/tester.png";
+import request3 from "../../assets/request3.png";
 import logout from "../../assets/logout.png";
 
 const Home = () => {
@@ -12,14 +14,21 @@ const Home = () => {
     <div className="navbar">
       <div className="navbar__profile">
         <img src={dad} alt="profile" className="profilePic" />
-        <p>Captain Zaraki</p>
-        <p>@tobiasWole__</p>
-        <p>18 branches</p>
+        <div className="profile__container">
+          <p className="profile__content">Captain Zaraki</p>
+          <p className="profile__content">@tobiasWole__</p>
+        </div>
+        <Link to="/branches" className="link-style">
+          <div className="navbar__page">
+            <img src={branch2} alt="friends icon" className="navbar__icon" />
+            <p className="navbar__item">No. of Branches</p>
+          </div>
+        </Link>
       </div>
       <div className="navbar__list">
         <div className="navbar__page">
-          <img src={profile} alt="timeline icon" className="navbar__icon" />
-          <p className="navbar__item">My Hut</p>
+          <img src={hut} alt="timeline icon" className="navbar__icon" />
+          <p className="navbar__item link-style">My Hut</p>
         </div>
         <div className="navbar__page">
           <img src={profile} alt="profile icon" className="navbar__icon" />
@@ -34,18 +43,14 @@ const Home = () => {
           </Link>
         </div>
         <div className="navbar__page">
-          <img src={reminder} alt="reminder icon" className="navbar__icon" />
-          <p className="navbar__item"> Reminders</p>
-        </div>
-        <div className="navbar__page">
-          <img src={profile} alt="profile icon" className="navbar__icon" />
+          <img src={request3} alt="requests icon" className="navbar__icon" />
           <Link to="/requests" className="link-style">
             <p className="navbar__item">Requests</p>
           </Link>
         </div>
         <div className="navbar__page">
           <img src={logout} alt="logout" className="navbar__icon" />
-          <p className="navbar__item">Logout</p>
+          <p className="navbar__item link-style">Logout</p>
         </div>
       </div>
     </div>

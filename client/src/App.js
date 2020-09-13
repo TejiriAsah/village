@@ -9,6 +9,7 @@ import KidsProfile from "./components/kidsProfile/KidsProfile";
 import EditKid from "./components/editKid/EditKid";
 import Modal from "./components/modal/Modal";
 import Requests from "./components/requests/Requests";
+import Branches from "./components/branches/Branches";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/profile" exact component={ProfilePage} />
+            <Route path="/branches" exact component={Branches} />
             <Route path="/kids" exact component={KidsPage} />
             <Route path="/kids/add" component={AddKid} />
             <Route path="/kids/child/:id" exact component={KidsProfile} />
