@@ -12,8 +12,8 @@ class Modal extends React.Component {
     return (
       <div>
         <div className="modal">
-          <p> X close page</p>
-          <h2 className="modal__heading">Change password</h2>
+          {/* <p className="modal__close"> x</p> */}
+          {/* <h2 className="modal__heading">Change password</h2>
           <form className="modal__form">
             <h2 className="modal__label">Old Password</h2>
             <input type="text" className="modal__input" />
@@ -21,13 +21,14 @@ class Modal extends React.Component {
             <input type="text" className="modal__input" />
             <h2 className="modal__label"> Confirm New Password</h2>
             <input type="text" className="modal__input" />
-          </form>
-          <div className="modal__btn">
+          </form> */}
+          {this.props.children}
+          {/* <div className="modal__btn">
             <button className="modal__btnChoices"> Cancel</button>
             <button className="modal__btnChoices"> Save</button>
-          </div>
+          </div> */}
         </div>
-        <div className="modal-overlay" id="modal-overlay"></div>
+        <div className="modal__overlay" id="modal-overlay"></div>
       </div>
     );
   }

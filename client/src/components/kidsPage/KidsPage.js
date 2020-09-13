@@ -30,12 +30,9 @@ class KidsPage extends React.Component {
     let kids = this.state.kids;
     return (
       <div className="kids-div">
-        <div className="button-div">
-          <Link to="/kids/add">
-            <button className="btn-style2"> + add a kid</button>
-          </Link>
-          <button className="btn-style2"> - remove kid</button>
-        </div>
+        <Link to="/kids/add">
+          <button className="btn-style"> + add a kid</button>
+        </Link>
         <div className="kid-card__container">
           {kids.map((kid, index) => {
             return (
@@ -48,7 +45,14 @@ class KidsPage extends React.Component {
                   <img src={kidPic} alt="profle" className="kid-card__image" />
                   <div className="kid-card__info">
                     <div className="kid-card__name">{kid.name}</div>
-                    <button className="kid-card__shareBtn">share ?</button>
+                    <div className="button-div">
+                      <Link to="/kids/share">
+                        <button className="kid-card__shareBtn link-style">
+                          Share
+                        </button>
+                      </Link>
+                      <button className="kid-card__shareBtn">Remove</button>
+                    </div>
                   </div>
                 </div>
               </Link>

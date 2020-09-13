@@ -52,6 +52,16 @@ class KidsProfile extends React.Component {
     return currYear - parseInt(year);
   };
 
+  activityHandler = (e) => {
+    e.preventDefault();
+    const kidId = this.props.match.params.id;
+    axios.get("/kids/child" + kidId).then((response) => {
+      this.setState({
+        activities: response.data.name,
+      });
+    });
+  };
+
   render() {
     const allergies = this.state.allergies;
     const dietaryRestrictions = this.state.dietaryRestrictions;
@@ -113,11 +123,20 @@ class KidsProfile extends React.Component {
           <p className="kidsProfile__info">Additional Notes:</p>
           <div className="kidsProfile__notes">{this.state.additionalNotes}</div>
           <div className="kidsProfile__info">
-            <p className="kidsProfile__category">Activities:</p>
+            <div className="kidsProfile__activities">
+              <Link to="/kids/activities">
+                <button className="kidsProfile__addActivity"> + </button>
+              </Link>
+              <p className="kidsProfile__category">Activities:</p>
+            </div>
             <div className="kidsProfile__container">
               {activities.map((activity, index) => {
                 return (
-                  <button className="kidsProfile__categoryBtn" key={index}>
+                  <button
+                    className="kidsProfile__categoryBtn"
+                    key={index}
+                    onClick={this.activityHandler}
+                  >
                     {activity}
                   </button>
                 );

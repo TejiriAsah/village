@@ -122,6 +122,7 @@ class EditKid extends React.Component {
             category="medications"
             existingTags={this.state.medications}
           />
+          <h2>Additional Notes</h2>
           <input
             type="text"
             label="Additional notes"
