@@ -82,7 +82,8 @@ class KidsProfile extends React.Component {
     const dietaryRestrictions = this.state.dietaryRestrictions;
     const medications = this.state.medications;
     const activities = this.state.activities;
-    const kidId = this.props.match.params.id;
+    // const activityId = this.props.match.params.id;
+    console.log("activity", activities);
 
     return (
       <div className="tesst">
@@ -195,7 +196,9 @@ class KidsProfile extends React.Component {
                             })}
                           </div>
                         </div>
-                        <Link to="/kids/activities/edit-activity">
+                        <Link
+                          to={"/kids/activities/edit-activity/" + activity._id}
+                        >
                           <button className="activity-div__editBtn">
                             Edit
                           </button>

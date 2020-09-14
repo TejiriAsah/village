@@ -8,6 +8,7 @@ class EditActivityModal extends React.Component {
   constructor() {
     super();
     this.state = {
+      id: "",
       name: "",
       location: "",
       time: "",
@@ -27,25 +28,53 @@ class EditActivityModal extends React.Component {
     });
   };
 
-  // submitHandler = (e) => {
-  //   e.preventDefault();
-  //   const kidId = this.props.match.params.id;
-  //   const newActivity = {
-  //     kidID: kidId,
-  //     name: this.state.name,
-  //     location: this.state.location,
-  //     time: this.state.time,
-  //     dontForget: this.state.dontForget,
-  //   };
+  componentDidMount() {
+    const activityId = this.props.match.params.id;
+    console.log("match3", this.props.match);
+    if (activityId) {
+      axios
+        .get("/kids/activities/activity/" + activityId)
+        .then((response) => {
+          console.log("the response for activity", response);
+          this.setState({
+            id: activityId,
+            name: response.data.name,
+            location: response.data.location,
+            time: response.data.time,
+            dontForget: response.data.dontForget,
+          });
+        })
+        .catch((error) => {
+          console.log("your error", error);
+        });
+    }
+  }
 
-  // };
+  submitHandler = (e) => {
+    e.preventDefault();
+
+    const updatedActivity = {
+      name: this.state.name,
+      location: this.state.location,
+      time: this.state.time,
+      dontForget: this.state.dontForget,
+    };
+    axios
+      .put("/kids/activities/edit-activity/" + this.state.id, updatedActivity)
+      .then((response) => {
+        if (response.status === 200) {
+          this.props.history.push("/kids/activities/" + this.state.id);
+        }
+      })
+      .catch((error) => console.log("your error", error));
+  };
 
   render() {
     return (
       <>
         <Modal>
           <p className="modal__close"> x</p>
-          <h2 className="modal__heading">Add Activity</h2>
+          <h2 className="modal__heading">Edit Activity</h2>
           <form className="modal__form">
             <input
               type="text"
@@ -83,7 +112,7 @@ class EditActivityModal extends React.Component {
               className="modal__btnChoices"
               onClick={(e) => this.submitHandler(e)}
             >
-              Add
+              Save
             </button>
           </div>
         </Modal>
@@ -91,6 +120,5 @@ class EditActivityModal extends React.Component {
     );
   }
 }
-// activity name, kid’s name, location, frequency, time, don’t forget
 
 export default withRouter(EditActivityModal);

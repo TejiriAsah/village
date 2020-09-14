@@ -25,7 +25,6 @@ class KidsPage extends React.Component {
         });
       })
       .catch((error) => console.log("your error", error));
-    console.log("check here", this.props.match);
   }
   render() {
     let kids = this.state.kids;

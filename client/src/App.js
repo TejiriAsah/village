@@ -7,13 +7,13 @@ import KidsPage from "./components/kidsPage/KidsPage";
 import AddKid from "./components/addKid/AddKid";
 import KidsProfile from "./components/kidsProfile/KidsProfile";
 import EditKid from "./components/editKid/EditKid";
-// import Modal from "./components/modal/Modal";
 import Requests from "./components/requests/Requests";
 import Branches from "./components/branches/Branches";
 import ChangePasswordModal from "./components/modal/ChangePasswordModal";
 import ShareKidCard from "./components/modal/ShareKidCard";
 import AddAcitivityModal from "./components/modal/AddActivityModal";
 import EditActivityModal from "./components/modal/EditActivityModal";
+import Login from "./components/villageIndex/Login";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
         <Home />
         <div>
           <Switch>
+            <Route path="/login" component={Login} />
             <Route path="/profile" exact component={ProfilePage} />
             <Route path="/changepassword" component={ChangePasswordModal} />
             <Route path="/branches" exact component={Branches} />

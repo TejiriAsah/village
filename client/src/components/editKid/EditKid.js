@@ -23,7 +23,7 @@ class EditKid extends React.Component {
   }
   componentDidMount() {
     const kidId = this.props.match.params.id;
-    console.log("match2", this.props.match);
+
     if (kidId) {
       axios
         .get("/kids/child/" + kidId)
