@@ -195,6 +195,11 @@ class KidsProfile extends React.Component {
                             })}
                           </div>
                         </div>
+                        <Link to="/kids/activities/edit-activity">
+                          <button className="activity-div__editBtn">
+                            Edit
+                          </button>
+                        </Link>
                       </div>
                     )}
                   </div>

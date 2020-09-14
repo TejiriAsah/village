@@ -13,6 +13,7 @@ import Branches from "./components/branches/Branches";
 import ChangePasswordModal from "./components/modal/ChangePasswordModal";
 import ShareKidCard from "./components/modal/ShareKidCard";
 import AddAcitivityModal from "./components/modal/AddActivityModal";
+import EditActivityModal from "./components/modal/EditActivityModal";
 
 function App() {
   return (
@@ -29,6 +30,10 @@ function App() {
             <Route
               path="/kids/activities/add-activity/:id"
               component={AddAcitivityModal}
+            />
+            <Route
+              path="/kids/activities/edit-activity/:id"
+              component={EditActivityModal}
             />
             <Route path="/kids/child/:id" exact component={KidsProfile} />
             <Route path="/kids/edit/:id" component={EditKid} />

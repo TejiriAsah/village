@@ -70,7 +70,6 @@ kidRouter.get("/:parentId", (req, res) => {
 //get KID
 
 kidRouter.get("/child/:kidId", (req, res) => {
-  console.log("hello", req.params.kidId);
   Kid.findOne({ _id: req.params.kidId }, (error, kid) => {
     if (error) {
       return res.status(500).json({ message: error });

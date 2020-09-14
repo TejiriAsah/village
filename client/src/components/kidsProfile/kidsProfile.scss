@@ -43,6 +43,9 @@
     color: black;
     border-radius: 6px;
     margin: 0 8px 8px 0;
+    &:active {
+      background-color: red;
+    }
   }
   &__activities {
     display: flex;
@@ -99,5 +102,18 @@
   &__close {
     border: 0;
     background-color: #ffffff;
+  }
+  &__editBtn {
+    color: #552534;
+    background-color: #ffffff;
+    // background-color: #552534;
+    // color: #ffffff;
+    width: 7rem;
+    height: 2rem;
+    margin-top: 1rem;
+    margin-left: 22rem;
+    border: 0;
+    border-radius: 20px;
+    border: 1px solid #552534;
   }
 }
