@@ -50,7 +50,6 @@ class AddKid extends React.Component {
     this.setState({
       [key]: tags,
     });
-    // console.log("tags", this.state.tags);
   };
 
   render() {

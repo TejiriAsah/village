@@ -70,4 +70,19 @@ activityRouter.put("/edit-activity/:activityId", (req, res) => {
   );
 });
 
+//get activities for one child
+
+activityRouter.get("/:kidId", (req, res) => {
+  Activity.find({ kidID: req.params.kidId }, (error, activities) => {
+    if (error) {
+      return res.status(500).json({ message: error });
+    }
+    if (!activities) {
+      return res.status(404).json({ message: "activity not found" });
+    } else {
+      return res.status(200).json(activities);
+    }
+  });
+});
+
 module.exports = activityRouter;

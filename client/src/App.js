@@ -26,7 +26,10 @@ function App() {
             <Route path="/branches" exact component={Branches} />
             <Route path="/kids" exact component={KidsPage} />
             <Route path="/kids/add" component={AddKid} />
-            <Route path="/kids/activities" component={AddAcitivityModal} />
+            <Route
+              path="/kids/activities/add-activity/:id"
+              component={AddAcitivityModal}
+            />
             <Route path="/kids/child/:id" exact component={KidsProfile} />
             <Route path="/kids/edit/:id" component={EditKid} />
             <Route path="/kids/share" component={ShareKidCard} />

@@ -1,33 +1,35 @@
 @import "../partials/variables";
 
-.tag-input {
+.tag-inputPurple {
   display: flex;
   align-items: flex-start;
   flex-wrap: wrap;
   min-height: 48px;
-  width: 31rem;
+  width: 25rem;
   margin: 1rem 1.5rem;
   padding-left: 0.5rem;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid #552534;
   &:focus-within {
     border: 1px solid $background;
   }
+  &:active {
+    border: 0;
+  }
 }
 
-.tag {
+.tagPurple {
   width: auto;
   height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  color: #552534;
+  color: #ffffff;
   padding: 0 8px;
   font-size: 14px;
   list-style: none;
   border-radius: 6px;
   margin: 0 8px 8px 0;
-  background: #ffffff;
+  background-color: #552534;
 }
 
 .tag-title {
@@ -66,11 +68,11 @@ input {
     outline: none;
   }
   &::placeholder {
-    color: #ffffff;
+    color: #552534;
   }
 }
-.bob2 {
+.bob3 {
   border: 0;
-  color: #ffffff;
-  background-color: #552534;
+  color: #552534;
+  background-color: #ffffff;
 }

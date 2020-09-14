@@ -23,6 +23,7 @@ class EditKid extends React.Component {
   }
   componentDidMount() {
     const kidId = this.props.match.params.id;
+    console.log("match2", this.props.match);
     if (kidId) {
       axios
         .get("/kids/child/" + kidId)
@@ -122,7 +123,7 @@ class EditKid extends React.Component {
             category="medications"
             existingTags={this.state.medications}
           />
-          <h2>Additional Notes</h2>
+          <h4 className="additionalNotes-header">Additional Notes: </h4>
           <input
             type="text"
             label="Additional notes"

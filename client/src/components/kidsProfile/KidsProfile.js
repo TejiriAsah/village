@@ -18,6 +18,7 @@ class KidsProfile extends React.Component {
       medications: [],
       activities: [],
       additionalNotes: "",
+      showActivity: -1,
     };
   }
 
@@ -41,6 +42,7 @@ class KidsProfile extends React.Component {
         this.setState({
           age: this.getAge(this.state.dateOfBirth),
         });
+        this.getActivities();
       })
       .catch((error) => console.log("error", error));
   }
@@ -52,21 +54,35 @@ class KidsProfile extends React.Component {
     return currYear - parseInt(year);
   };
 
-  activityHandler = (e) => {
-    e.preventDefault();
+  getActivities = () => {
     const kidId = this.props.match.params.id;
-    axios.get("/kids/child" + kidId).then((response) => {
+    axios.get("/kids/activities/" + kidId).then((response) => {
+      console.log("response", response);
       this.setState({
-        activities: response.data.name,
+        activities: response.data,
       });
     });
   };
 
+  activityHandler = (e, index) => {
+    e.preventDefault();
+    this.setState({
+      showActivity: index,
+    });
+  };
+
+  closeActivity = (e) => {
+    e.preventDefault();
+    this.setState({
+      showActivity: -1,
+    });
+  };
   render() {
     const allergies = this.state.allergies;
     const dietaryRestrictions = this.state.dietaryRestrictions;
     const medications = this.state.medications;
     const activities = this.state.activities;
+    const kidId = this.props.match.params.id;
 
     return (
       <div className="tesst">
@@ -124,7 +140,7 @@ class KidsProfile extends React.Component {
           <div className="kidsProfile__notes">{this.state.additionalNotes}</div>
           <div className="kidsProfile__info">
             <div className="kidsProfile__activities">
-              <Link to="/kids/activities">
+              <Link to={"/kids/activities/add-activity/" + this.state.id}>
                 <button className="kidsProfile__addActivity"> + </button>
               </Link>
               <p className="kidsProfile__category">Activities:</p>
@@ -135,10 +151,53 @@ class KidsProfile extends React.Component {
                   <button
                     className="kidsProfile__categoryBtn"
                     key={index}
-                    onClick={this.activityHandler}
+                    onClick={(e) => this.activityHandler(e, index)}
                   >
-                    {activity}
+                    {activity.name}
                   </button>
+                );
+              })}
+            </div>
+            <div>
+              {activities.map((activity, index) => {
+                return (
+                  <div key={index}>
+                    {this.state.showActivity === index && (
+                      <div className="activity-div" key={index}>
+                        <div className="activity-div__closePage">
+                          <button
+                            className="activity-div__close"
+                            onClick={(e) => this.closeActivity(e)}
+                          >
+                            X
+                          </button>
+                        </div>
+                        <div className="activity-div__info">
+                          <p className="activity-div__text">Location: </p>
+                          <p>{activity.location}</p>
+                        </div>
+                        <div className="activity-div__info">
+                          <p className="activity-div__text">Time: </p>
+                          <p>{activity.time}</p>
+                        </div>
+                        <div className="activity-div__reminderBox">
+                          <p className="activity-div__text">Don't forget: </p>
+                          <div>
+                            {activity.dontForget.map((item, index) => {
+                              return (
+                                <button
+                                  key={index}
+                                  className="activity-div__btn"
+                                >
+                                  {item}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
                 );
               })}
             </div>
