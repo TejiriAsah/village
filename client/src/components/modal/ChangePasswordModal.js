@@ -1,6 +1,6 @@
 import React from "react";
 import Modal from "./Modal";
-import axios from "axios";
+// import axios from "axios";
 
 class ChangePasswordModal extends React.Component {
   // constructor() {

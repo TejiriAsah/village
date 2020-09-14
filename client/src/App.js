@@ -14,6 +14,7 @@ import ShareKidCard from "./components/modal/ShareKidCard";
 import AddAcitivityModal from "./components/modal/AddActivityModal";
 import EditActivityModal from "./components/modal/EditActivityModal";
 import Login from "./components/villageIndex/Login";
+import SignUp from "./components/villageIndex/SignUp";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <div>
           <Switch>
             <Route path="/login" component={Login} />
+            <Route path="/signup" component={SignUp} />
             <Route path="/profile" exact component={ProfilePage} />
             <Route path="/changepassword" component={ChangePasswordModal} />
             <Route path="/branches" exact component={Branches} />

@@ -28,7 +28,6 @@ class KidsProfile extends React.Component {
     axios
       .get("/kids/child/" + kidId)
       .then((response) => {
-        console.log("your response", response);
         this.setState({
           id: kidId,
           name: response.data.name,
@@ -57,7 +56,6 @@ class KidsProfile extends React.Component {
   getActivities = () => {
     const kidId = this.props.match.params.id;
     axios.get("/kids/activities/" + kidId).then((response) => {
-      console.log("response", response);
       this.setState({
         activities: response.data,
       });
@@ -83,7 +81,6 @@ class KidsProfile extends React.Component {
     const medications = this.state.medications;
     const activities = this.state.activities;
     // const activityId = this.props.match.params.id;
-    console.log("activity", activities);
 
     return (
       <div className="tesst">

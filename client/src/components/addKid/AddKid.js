@@ -34,7 +34,6 @@ class AddKid extends React.Component {
       medications: this.state.medications,
       additionalNotes: this.state.additionalNotes,
     };
-    console.log("new", newKid);
 
     axios
       .post("/kids/wondermum", newKid)

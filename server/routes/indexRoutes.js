@@ -33,6 +33,9 @@ indexRouter.post("/sign-up", (req, res) => {
 
 indexRouter.post("/login", (req, res) => {
   Parent.findOne({ username: req.body.username }, (error, parent) => {
+    if (error) {
+      return res.status(500).json({ message: error });
+    }
     if (!parent) {
       return res
         .status(404)

@@ -26,7 +26,6 @@ kidRouter.post("/:username", (req, res) => {
       });
       newKid.save((error) => {
         if (error) {
-          console.log("line 29", error);
           return res.status(500).send(error);
         } else {
           const kidId = newKid._id;
