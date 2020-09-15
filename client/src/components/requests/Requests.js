@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "./requests.scss";
 import friends from "../../assets/friends.gif";
 
@@ -16,8 +18,9 @@ class Requests extends React.Component {
   }
 
   getRequests = () => {
+    const loggedInUser = this.props.reducer.user.username;
     axios
-      .get("/requests/wondermum")
+      .get("/requests/" + loggedInUser)
       .then((response) => {
         console.log("response", response);
         this.setState({
@@ -28,8 +31,9 @@ class Requests extends React.Component {
   };
 
   acceptHandler = (username) => {
+    const loggedInUser = this.props.reducer.user.username;
     axios
-      .post("/requests/accept/" + username + "/wondermum")
+      .post("/requests/accept/" + username + "/" + loggedInUser)
       .then((response) => {
         if (response.status === 200) {
           this.getRequests();
@@ -38,8 +42,9 @@ class Requests extends React.Component {
   };
 
   deleteHandler = (username) => {
+    const loggedInUser = this.props.reducer.user.username;
     axios
-      .patch("/requests/cancel/" + username + "/wondermum")
+      .patch("/requests/cancel/" + username + "/" + loggedInUser)
       .then((response) => {
         if (response.status === 200) {
           this.getRequests();
@@ -59,8 +64,10 @@ class Requests extends React.Component {
               <div className="request-card" key={index}>
                 <img src={friends} alt="friends" className="requests__image" />
                 <div className="request-card__content">
+                  <p className="request-card__info--username">
+                    @{request.username}
+                  </p>
                   <p className="request-card__info">{request.name}</p>
-                  <p className="request-card__info">{request.username}</p>
                   <div className="request-card__btn">
                     <button
                       className="btn-style3"
@@ -85,4 +92,12 @@ class Requests extends React.Component {
   }
 }
 
-export default Requests;
+const mapStateToProps = (state) => ({
+  reducer: state,
+});
+
+Requests.propTypes = {
+  reducer: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(Requests);

@@ -73,4 +73,7 @@ input {
   border: 0;
   color: #ffffff;
   background-color: #552534;
+  &::placeholder {
+    color: #ffffff;
+  }
 }

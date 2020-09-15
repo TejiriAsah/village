@@ -18,6 +18,13 @@ const TagInput = (props) => {
     }
   };
 
+  React.useEffect(() => {
+    console.log("existing", props.existingTags);
+    if (props.existingTags) {
+      setTags(props.existingTags);
+    }
+  }, [props.existingTags]);
+
   return (
     <div className="tag-input">
       <ul id="tags">

@@ -1,7 +1,13 @@
 //sign up/log in routes
 const express = require("express");
 const indexRouter = express.Router();
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const Parent = require("../models/Parent");
+
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
+}
 
 //sign-up
 
@@ -18,12 +24,42 @@ indexRouter.post("/sign-up", (req, res) => {
         email: req.body.email,
         password: req.body.password,
       });
-      newParent.save((error) => {
-        if (error) {
-          return res.status(500).send("error");
-        } else {
-          return res.status(200).send("success");
-        }
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(newParent.password, salt, (error, hash) => {
+          newParent.password = hash;
+          newParent.save((error) => {
+            if (error) {
+              console.log("the error", error);
+              return res.status(500).send("error", error);
+            } else {
+              Parent.findOne(
+                { username: newParent.username },
+                (error, user) => {
+                  const payload = {
+                    id: user._id,
+                    name: user.name,
+                    username: user.username,
+                    email: user.email,
+                  };
+                  jwt.sign(
+                    payload,
+                    process.env.secretOrKey,
+                    {
+                      expiresIn: "6h",
+                    },
+                    (error, token) => {
+                      return res.status(200).json({
+                        message: "sign up successful",
+                        success: true,
+                        token: "Bearer" + token,
+                      });
+                    }
+                  );
+                }
+              );
+            }
+          });
+        });
       });
     }
   });
@@ -41,11 +77,32 @@ indexRouter.post("/login", (req, res) => {
         .status(404)
         .json({ message: "cannot find account with that username" });
     } else {
-      if (parent.password === req.body.password) {
-        return res.status(200).json({ message: "login successful" });
-      } else {
-        return res.status(400).json({ message: "invalid password" });
-      }
+      bcrypt.compare(req.body.password, parent.password, (err, response) => {
+        if (response) {
+          const payload = {
+            id: parent._id,
+            name: parent.name,
+            username: parent.username,
+            email: parent.email,
+          };
+          jwt.sign(
+            payload,
+            process.env.secretOrKey,
+            {
+              expiresIn: "6h",
+            },
+            (error, token) => {
+              return res.status(200).json({
+                message: "login successful",
+                success: true,
+                token: "Bearer" + token,
+              });
+            }
+          );
+        } else {
+          return res.status(400).json({ message: "invalid password" });
+        }
+      });
     }
   });
 });

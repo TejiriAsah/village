@@ -1,8 +1,10 @@
 import React from "react";
 import axios from "axios";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "./addKid.scss";
 import goBack from "../../assets/left-arrow.png";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import TagInput from "../tagInput/TagInput";
 
 class AddKid extends React.Component {
@@ -25,6 +27,7 @@ class AddKid extends React.Component {
   };
 
   submitHandler = (e) => {
+    const parentUsername = this.props.reducer.user.username;
     e.preventDefault();
     const newKid = {
       name: this.state.name,
@@ -36,7 +39,7 @@ class AddKid extends React.Component {
     };
 
     axios
-      .post("/kids/wondermum", newKid)
+      .post("/kids/" + parentUsername, newKid)
       .then((response) => {
         if (response.status === 200) {
           this.props.history.push("/kids");
@@ -53,7 +56,7 @@ class AddKid extends React.Component {
 
   render() {
     return (
-      <div className="tesst">
+      <div>
         <div className="addKid__nav">
           <Link to="/kids">
             <img src={goBack} alt="previous page" className="goBack" />
@@ -111,5 +114,12 @@ class AddKid extends React.Component {
     );
   }
 }
+const mapStateToProps = (state) => ({
+  reducer: state,
+});
 
-export default AddKid;
+AddKid.propTypes = {
+  reducer: PropTypes.object.isRequired,
+};
+
+export default withRouter(connect(mapStateToProps)(AddKid));

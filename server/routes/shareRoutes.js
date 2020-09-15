@@ -22,7 +22,7 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
       return res.status(404).json({ message: "kid not found" });
     } else {
       Parent.findOne(
-        { username: req.params.receiverusername },
+        { username: req.body.receiverusername },
         (error, parent) => {
           if (error) {
             return res.status(500).json({ message: error });
@@ -30,15 +30,15 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
           if (!parent) {
             return res.status(404).json({ message: "profile not found" });
           } else {
-            const kids = parent.kids;
+            const kids = parent.receivedKids;
             console.log("your kids:", kids);
-            kids.push(req.params.kidId);
+            kids.push(kid);
             console.log("your new kids", kids);
 
             Parent.findOneAndUpdate(
-              { username: req.params.receiverusername },
+              { username: req.body.receiverusername },
               {
-                kids: kids,
+                receivedKids: kids,
               },
               (error, oldParent) => {
                 if (error) {
@@ -51,16 +51,33 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
                     kidID: req.params.kidId,
                     reason: req.body.reason,
                     parentUserName: req.params.username,
-                    otherParentUserName: req.params.receiverusername,
+                    otherParentUserName: req.body.receiverusername,
                     duration: req.body.duration,
                   });
                   newShare.save((error) => {
                     if (error) {
                       return res.status(500).send(error);
                     } else {
-                      return res
-                        .status(200)
-                        .json({ message: "now sharing kid profile" });
+                      const shares = kid.shares;
+                      shares.push(req.body.receiverusername);
+                      Kid.findOneAndUpdate(
+                        { _id: req.params.kidId },
+                        { shares: shares },
+                        (error, oldKid) => {
+                          if (error) {
+                            return res.status(500).json({ message: error });
+                          }
+                          if (!oldKid) {
+                            return res
+                              .status(404)
+                              .json({ message: "kid not found" });
+                          } else {
+                            return res
+                              .status(200)
+                              .json({ message: "now sharing kid profile" });
+                          }
+                        }
+                      );
                     }
                   });
                 }
@@ -73,12 +90,27 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
   });
 });
 
+shareRouter.get("/:kidId", (req, res) => {
+  Share.find({ kidID: req.params.kidId }, (error, usernames) => {
+    if (error) {
+      return res.status(500).json({ message: error });
+    }
+    if (!usernames) {
+      return res.status(200).json({ message: "Not sharing with anyone" });
+    } else {
+      return res.status(200).json(usernames);
+    }
+  });
+});
+
 //end share at date of expiration
 // Action = Share duration expires => DELETE - Shares database and Sharee’s kid’s array
 // “/kids/share/:kidID/:sharesID”
 // Delete share from shares database
 // Delete kid from sharee’s kid’s array
 // Automatically on expiration
+
+//maybe a check to see if expiration date has reached
 
 // shareRouter.delete("/:kidId")
 

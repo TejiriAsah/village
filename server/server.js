@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const express = require("express");
 const cors = require("cors");
 const app = express();
+const passport = require("passport");
 
 require("dotenv").config();
 
@@ -20,6 +21,11 @@ mongoose.connect(
   { useNewUrlParser: true }
 );
 
+// Passport middleware
+app.use(passport.initialize());
+// Passport config
+require("./config/passport")(passport);
+
 const PORT = process.env.PORT;
 
 app.use(cors());
@@ -35,6 +41,6 @@ app.use("/requests", requestRoutes);
 app.use("/kids/share", shareRoutes);
 app.use("/branches", branchRoutes);
 
-app.listen(8080, () => {
-  console.log(`Successfully started listening on Port: 8080`);
+app.listen(PORT, () => {
+  console.log(`Successfully started listening on Port: ${PORT}`);
 });

@@ -43,8 +43,9 @@ class AddActivityModal extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.props.history.push("/kids/child/" + kidId);
+          this.props.removeModal();
         }
-        console.log("heres the kig", kidId);
+        console.log("heres the kid", kidId);
       })
       .catch((error) => console.log("your error", error));
     console.log("here", this.props.match.params);
@@ -89,7 +90,12 @@ class AddActivityModal extends React.Component {
             </div>
           </form>
           <div className="modal__btn">
-            <button className="modal__btnChoices"> Cancel</button>
+            <button
+              className="modal__btnChoices"
+              onClick={() => this.props.removeModal()}
+            >
+              Cancel
+            </button>
             <button
               className="modal__btnChoices"
               onClick={(e) => this.submitHandler(e)}
@@ -102,6 +108,5 @@ class AddActivityModal extends React.Component {
     );
   }
 }
-// activity name, kid’s name, location, frequency, time, don’t forget
 
 export default withRouter(AddActivityModal);

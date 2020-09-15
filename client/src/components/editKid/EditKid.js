@@ -2,12 +2,10 @@ import React from "react";
 import axios from "axios";
 // import "../addKid.scss";
 import goBack from "../../assets/left-arrow.png";
-// import InputBox from "../inputBox/InputBox";
 import TagInput from "../tagInput/TagInput";
 import { Link, withRouter } from "react-router-dom";
 
 class EditKid extends React.Component {
-  // allergies - medication - make tags - similar to foto
   constructor() {
     super();
     this.state = {
@@ -28,6 +26,7 @@ class EditKid extends React.Component {
       axios
         .get("/kids/child/" + kidId)
         .then((response) => {
+          console.log("response", response.data);
           this.setState({
             id: kidId,
             name: response.data.name,
@@ -80,8 +79,9 @@ class EditKid extends React.Component {
   };
 
   render() {
+    console.log("state", this.state);
     return (
-      <div className="tesst">
+      <div>
         <div className="addKid__nav">
           <Link to="/kids">
             <img src={goBack} alt="previous page" className="goBack" />

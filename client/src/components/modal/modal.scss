@@ -15,11 +15,11 @@
   transition: all 0.3s ease-out;
   &__heading {
     padding-top: 1rem;
-    margin-left: 3rem;
+    margin-left: 1.5rem;
     margin-top: 0rem;
   }
   &__form {
-    margin-left: 2rem;
+    padding-left: 1rem;
   }
   &__label {
     margin: 0;
@@ -35,7 +35,8 @@
     border-bottom: 1px solid #552534;
 
     padding-left: 0.5rem;
-    margin: 1rem 1.5rem;
+    // margin: 1rem 1.5rem;
+    margin: 1rem;
   }
   &__btn {
     display: flex;

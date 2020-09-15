@@ -1,6 +1,8 @@
 import React from "react";
 import "./branches.scss";
 import axios from "axios";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import branchImg from "../../assets/branch.gif";
 
 class Branches extends React.Component {
@@ -12,8 +14,9 @@ class Branches extends React.Component {
   }
 
   componentDidMount() {
+    const username = this.props.reducer.user.username;
     axios
-      .get("/branches/wondermum")
+      .get("/branches/" + username)
       .then((response) => {
         this.setState({
           branches: response.data,
@@ -34,7 +37,9 @@ class Branches extends React.Component {
               <div className="branch-card" key={index}>
                 <img src={branchImg} alt="branch" className="requests__image" />
                 <div className="branch-card__content">
-                  <p className="branch-card__info">@{branch.username}</p>
+                  <p className="branch-card__info--username">
+                    @{branch.username}
+                  </p>
                   <p className="branch-card__info">{branch.name}</p>
                 </div>
               </div>
@@ -46,4 +51,12 @@ class Branches extends React.Component {
   }
 }
 
-export default Branches;
+const mapStateToProps = (state) => ({
+  reducer: state,
+});
+
+Branches.propTypes = {
+  reducer: PropTypes.object.isRequired,
+};
+
+export default connect(mapStateToProps)(Branches);

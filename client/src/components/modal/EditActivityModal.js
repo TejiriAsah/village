@@ -63,6 +63,7 @@ class EditActivityModal extends React.Component {
       .put("/kids/activities/edit-activity/" + this.state.id, updatedActivity)
       .then((response) => {
         if (response.status === 200) {
+          this.props.removeModal();
           this.props.history.push("/kids/activities/" + this.state.id);
         }
       })
@@ -103,11 +104,17 @@ class EditActivityModal extends React.Component {
                 updateTags={this.handleChangeTag}
                 categoryHolder="Add items to remember"
                 category="dontForget"
+                existingTags={this.state.dontForget}
               />
             </div>
           </form>
           <div className="modal__btn">
-            <button className="modal__btnChoices"> Cancel</button>
+            <button
+              className="modal__btnChoices"
+              onClick={() => this.props.removeModal()}
+            >
+              Cancel
+            </button>
             <button
               className="modal__btnChoices"
               onClick={(e) => this.submitHandler(e)}

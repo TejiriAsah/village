@@ -2,18 +2,17 @@
   color: #552534;
   background-color: #ffffff;
   width: 9rem;
-  height: 2.5rem;
-  margin-top: 4rem;
-  margin-left: 23rem;
+  height: 2.3rem;
+  margin-top: 1rem;
+  margin-left: 25rem;
   // margin-left: 2rem;
   border: 0;
   border-radius: 20px;
 }
 
-.test {
-  // color: #7c423c;
+.userProfile {
   margin-top: 3rem;
-  width: 496px;
+  width: 31rem;
 }
 
 .profile {
@@ -22,7 +21,16 @@
     margin-left: 2rem;
     margin-bottom: 2.5rem;
   }
+  &__content {
+    display: flex;
+    color: #ffffff;
+  }
   &__info {
     margin-bottom: 2rem;
+    font-weight: 300;
+  }
+  &__label {
+    margin-right: 0.5rem;
+    font-weight: 600;
   }
 }

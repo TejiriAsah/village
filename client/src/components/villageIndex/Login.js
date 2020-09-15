@@ -1,5 +1,8 @@
 import React from "react";
-import axios from "axios";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { loginUser } from "../../store/Actions";
+import PropTypes from "prop-types";
 import "./login.scss";
 
 class Login extends React.Component {
@@ -10,24 +13,29 @@ class Login extends React.Component {
       password: "",
     };
   }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+  }
+
   handleChange = (e, key) => {
     this.setState({
       [key]: e.target.value,
     });
   };
   submitHandler = () => {
-    // const newLogin = {
-    //   username: this.state.username,
-    //   password: this.state.password,
-    // };
-    axios
-      .post("/login")
-      .then((response) => {
-        if (response.status === 200) {
-          this.props.history.push("/profile");
-        }
-      })
-      .catch((error) => console.log("your error", error));
+    const newLogin = {
+      username: this.state.username,
+      password: this.state.password,
+    };
+    this.props.loginUser(newLogin);
   };
 
   render() {
@@ -43,14 +51,14 @@ class Login extends React.Component {
             onChange={(e) => this.handleChange(e, "username")}
           />
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             className="login__content"
             value={this.state.password}
             onChange={(e) => this.handleChange(e, "password")}
           />
         </div>
-        <button className="login__btn" onClick={() => this.submitHandler}>
+        <button className="login__btn" onClick={() => this.submitHandler()}>
           Login
         </button>
         <div className="login__redirect">
@@ -62,4 +70,15 @@ class Login extends React.Component {
   }
 }
 
-export default Login;
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.isAuthenticated,
+  error: state.error,
+});
+
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+};
+
+export default withRouter(connect(mapStateToProps, { loginUser })(Login));

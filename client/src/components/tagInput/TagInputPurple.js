@@ -18,6 +18,13 @@ const TagInputPurple = (props) => {
     }
   };
 
+  React.useEffect(() => {
+    console.log("existing", props.existingTags);
+    if (props.existingTags) {
+      setTags(props.existingTags);
+    }
+  }, [props.existingTags]);
+
   return (
     <div className="tag-inputPurple">
       <ul id="tags">

@@ -17,6 +17,7 @@ let ParentSchema = new mongoose.Schema({
   kids: { type: Array, required: false },
   reminders: { type: Array, required: false },
   shares: { type: Array, required: false },
+  receivedKids: { type: Array, required: false },
   requests: {
     type: [
       {

@@ -13,11 +13,12 @@
 .navbar {
   border-right: 1px solid black;
   width: 12rem;
+  min-width: 12rem;
   height: 100vh;
   box-shadow: 3px 0px 20px #888888;
   background-color: #ffffff;
   padding-left: 1rem;
-  //#47a4ae,526a24,b1cce7,#552534
+
   &__list {
     padding-left: 0rem;
   }
@@ -35,6 +36,16 @@
   &__page {
     display: flex;
   }
+  &__logOut {
+    margin-top: 0.3rem;
+    font-size: 1rem;
+    margin-left: 1rem;
+    font-weight: 500;
+    background-color: #ffffff;
+    color: #552534;
+    border: 0;
+    padding: 0;
+  }
 }
 
 .profile {
@@ -42,7 +53,7 @@
     margin-top: 1rem;
     margin-bottom: 2rem;
   }
-  &__content {
+  &__box {
     margin: 0;
     font-weight: 600;
     color: #552534;

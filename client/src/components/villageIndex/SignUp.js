@@ -1,5 +1,8 @@
 import React from "react";
-import axios from "axios";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { registerUser } from "../../store/Actions";
+import PropTypes from "prop-types";
 import "./login.scss";
 
 class SignUp extends React.Component {
@@ -12,6 +15,20 @@ class SignUp extends React.Component {
       password: "",
     };
   }
+
+  componentWillReceiveProps(nextProps) {
+    //if user is successfully registered, redirect to timeline
+    if (nextProps.reducer.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.reducer.isAuthenticated) {
+      this.props.history.push("/profile");
+    }
+  }
+
   handleChange = (e, key) => {
     this.setState({
       [key]: e.target.value,
@@ -24,14 +41,7 @@ class SignUp extends React.Component {
       email: this.state.email,
       password: this.state.password,
     };
-    axios
-      .post("/sign-up", newProfile)
-      .then((response) => {
-        if (response.status === 200) {
-          this.props.history.push("/profile");
-        }
-      })
-      .catch((error) => console.log("your error", error));
+    this.props.registerUser(newProfile);
   };
 
   render() {
@@ -61,7 +71,7 @@ class SignUp extends React.Component {
             onChange={(e) => this.handleChange(e, "email")}
           />
           <input
-            type="text"
+            type="password"
             placeholder="Password"
             className="login__content"
             value={this.state.password}
@@ -80,4 +90,13 @@ class SignUp extends React.Component {
   }
 }
 
-export default SignUp;
+const mapStateToProps = (state) => ({
+  reducer: state,
+});
+
+SignUp.propTypes = {
+  reducer: PropTypes.object.isRequired,
+  registerUser: PropTypes.func.isRequired,
+};
+
+export default withRouter(connect(mapStateToProps, { registerUser })(SignUp));

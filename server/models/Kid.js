@@ -9,6 +9,7 @@ let KidSchema = new mongoose.Schema({
   medications: { type: Array, required: false },
   activities: { type: Array, required: false },
   additionalNotes: { type: String, required: false },
+  shares: { type: Array, required: false },
 });
 
 let Kid = mongoose.model("kids", KidSchema);
