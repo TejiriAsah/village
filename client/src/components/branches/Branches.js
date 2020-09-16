@@ -21,7 +21,6 @@ class Branches extends React.Component {
         this.setState({
           branches: response.data,
         });
-        console.log("response", response);
       })
       .catch((error) => console.log("your error", error));
   }

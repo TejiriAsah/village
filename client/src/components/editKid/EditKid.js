@@ -26,7 +26,6 @@ class EditKid extends React.Component {
       axios
         .get("/kids/child/" + kidId)
         .then((response) => {
-          console.log("response", response.data);
           this.setState({
             id: kidId,
             name: response.data.name,
@@ -68,7 +67,7 @@ class EditKid extends React.Component {
       activities: this.state.activities,
       additionalNotes: this.state.additionalNotes,
     };
-    console.log("updated kid", updatedKid);
+
     axios
       .put("/kids/edit/" + this.state.id, updatedKid)
       .then((response) => {
@@ -80,7 +79,6 @@ class EditKid extends React.Component {
   };
 
   render() {
-    console.log("state", this.state);
     const kidId = this.props.match.params.id;
     return (
       <div>

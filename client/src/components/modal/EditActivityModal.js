@@ -77,7 +77,6 @@ class EditActivityModal extends React.Component {
   };
 
   render() {
-    console.log("here it is", this.state);
     return (
       <>
         <Modal>

@@ -45,11 +45,8 @@ class AddActivityModal extends React.Component {
           this.props.history.push("/kids/child/" + kidId);
           this.props.removeModal();
         }
-        console.log("heres the kid", kidId);
       })
       .catch((error) => console.log("your error", error));
-    console.log("here", this.props.match.params);
-    console.log("match", this.props.match);
   };
 
   render() {

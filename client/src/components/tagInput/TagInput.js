@@ -7,7 +7,7 @@ const TagInput = (props) => {
     const updatedTags = tags.filter((tag, index) => {
       return index !== indexToRemove;
     });
-    console.log("updated", updatedTags);
+
     setTags(updatedTags);
     props.updateTags(props.category, updatedTags);
   };
@@ -19,12 +19,10 @@ const TagInput = (props) => {
       e.target.value = "";
 
       props.updateTags(props.category, newTags);
-      console.log("check tags", newTags);
     }
   };
 
   React.useEffect(() => {
-    console.log("existing", props.existingTags);
     if (props.existingTags) {
       setTags(props.existingTags);
     }

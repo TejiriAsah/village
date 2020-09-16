@@ -60,7 +60,6 @@ class Timeline extends React.Component {
   };
 
   search = (e) => {
-    console.log("hereeee");
     axios
       .get("/profile/" + this.state.search)
       .then((response) => {
@@ -71,7 +70,6 @@ class Timeline extends React.Component {
             showModal: true,
           });
         }
-        console.log("result", this.state.result);
       })
       .catch((error) => {
         console.log(error);

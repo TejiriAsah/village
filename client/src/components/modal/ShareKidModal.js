@@ -24,7 +24,6 @@ class ShareKidModal extends React.Component {
   submitHandler = (e) => {
     const parentUsername = this.props.reducer.user.username;
     const kid = this.props.kidId;
-    console.log("kidid", kid);
 
     e.preventDefault();
 

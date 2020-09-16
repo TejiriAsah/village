@@ -41,12 +41,6 @@ const SearchBarDropDown = (props) => {
               <div key={index} className="result">
                 <div className="result__flex">
                   <div className="result__box">
-                    {/* <button
-                      className="close-search"
-                      onClick={() => closeFunction()}
-                    >
-                      X
-                    </button> */}
                     <div className="result__div">
                       <p className="result__info">{option.name}</p>
                       <p className="result__info">@{option.username}</p>

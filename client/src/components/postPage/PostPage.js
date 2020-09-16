@@ -81,7 +81,7 @@ class PostPage extends React.Component {
         }
       })
       .catch((error) => {
-        console.log(error);
+        console.log("your error", error);
       });
   };
 
