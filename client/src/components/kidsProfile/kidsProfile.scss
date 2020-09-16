@@ -44,8 +44,9 @@
     color: black;
     border-radius: 6px;
     margin: 0 8px 8px 0;
-    &:active {
-      background-color: red;
+    &:focus {
+      background-color: #552534;
+      color: #ffffff;
     }
   }
   &__activities {

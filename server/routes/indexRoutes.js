@@ -18,6 +18,16 @@ indexRouter.post("/sign-up", (req, res) => {
         message: "Account with username already exists, please try again",
       });
     } else {
+      if (Object.keys(req.body).length === 0) {
+        return res.status(400).json({ message: "Request body missing" });
+      }
+
+      if (Object.keys(req.body).length !== 0 && !checkSignUpKeys(req.body)) {
+        return res
+          .status(400)
+          .json({ message: "Request body must have ALL FIELDS " });
+      }
+
       const newParent = new Parent({
         name: req.body.name,
         username: req.body.username,
@@ -78,6 +88,16 @@ indexRouter.post("/login", (req, res) => {
         .status(404)
         .json({ message: "cannot find account with that username" });
     } else {
+      if (Object.keys(req.body).length === 0) {
+        return res.status(400).json({ message: "Request body missing" });
+      }
+
+      if (Object.keys(req.body).length !== 0 && !checkLoginKeys(req.body)) {
+        return res
+          .status(400)
+          .json({ message: "Request body must have ALL FIELDS " });
+      }
+
       bcrypt.compare(req.body.password, parent.password, (err, response) => {
         if (response) {
           const payload = {
@@ -108,5 +128,18 @@ indexRouter.post("/login", (req, res) => {
     }
   });
 });
+
+function checkSignUpKeys(requiredObj) {
+  return (
+    requiredObj.name &&
+    requiredObj.username &&
+    requiredObj.email &&
+    requiredObj.password
+  );
+}
+
+function checkLoginKeys(requiredObj) {
+  return requiredObj.username && requiredObj.password;
+}
 
 module.exports = indexRouter;

@@ -12,6 +12,7 @@ class Login extends React.Component {
     this.state = {
       username: "",
       password: "",
+      error: "",
     };
   }
   componentWillReceiveProps(nextProps) {
