@@ -10,6 +10,8 @@ let KidSchema = new mongoose.Schema({
   activities: { type: Array, required: false },
   additionalNotes: { type: String, required: false },
   shares: { type: Array, required: false },
+  expirationDate: { type: String, required: false },
+  expirationTime: { type: String, required: false },
 });
 
 let Kid = mongoose.model("kids", KidSchema);

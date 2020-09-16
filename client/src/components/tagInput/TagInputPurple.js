@@ -4,7 +4,12 @@ import "./tagInputPurple.scss";
 const TagInputPurple = (props) => {
   const [tags, setTags] = React.useState([]);
   const removeTags = (indexToRemove) => {
-    setTags(tags.filter((_, index) => index !== indexToRemove));
+    const updatedTags = tags.filter((tag, index) => {
+      return index !== indexToRemove;
+    });
+    console.log("updated", updatedTags);
+    setTags(updatedTags);
+    props.updateTags(props.category, updatedTags);
   };
   const addTags = (e) => {
     if (e.target.value !== "") {

@@ -12,9 +12,28 @@ postRouter.post("/post/:username", (req, res) => {
     if (!parent) {
       return res.status(404).json({ message: "profile not found" });
     } else {
+      const today = new Date();
+      const date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+      let hours = today.getHours();
+      if (hours.toString().length == 1) {
+        hours = "0" + hours;
+      }
+      let minutes = today.getMinutes();
+      if (minutes.toString().length == 1) {
+        minutes = "0" + minutes;
+      }
+      const time = hours + ":" + minutes;
       const newPost = new Post({
+        name: req.body.name,
         username: req.params.username,
         message: req.body.message,
+        date: date,
+        time: time,
       });
       newPost.save((error) => {
         if (error) {
@@ -32,14 +51,33 @@ postRouter.post("/post/:username", (req, res) => {
 // Return all posts of only the usernames in the branches list of the parents
 //get posts
 postRouter.get("/:username", (req, res) => {
-  Post.find({ username: req.params.username }, (error, posts) => {
+  Post.find({}, (error, posts) => {
     if (error) {
       return res.status(500).json({ message: error });
     }
     if (!posts) {
       return res.status(404).json({ message: "profile not found" });
     } else {
-      return res.status(200).json(posts);
+      Parent.findOne({ username: req.params.username }, (err, parent) => {
+        if (err) {
+          return res.status(500).json({ message: error });
+        }
+
+        if (!parent) {
+          return res.status(404).json({ message: "parent not found" });
+        } else {
+          const branches = parent.branches;
+          const usernames = [];
+          usernames.push(req.params.username);
+          for (let i = 0; i < branches.length; i++) {
+            usernames.push(branches[i].username);
+          }
+          const filteredPosts = posts.filter((post) => {
+            return usernames.includes(post.username);
+          });
+          return res.status(200).json(filteredPosts);
+        }
+      });
     }
   });
 });
@@ -49,7 +87,7 @@ postRouter.get("/:username", (req, res) => {
 // “/post/like/:postID”
 // Add to likes array of posts database
 
-postRouter.post("/post/like/:postId", (req, res) => {
+postRouter.patch("/post/like/:postId", (req, res) => {
   Post.findOne({ _id: req.params.postId }, (error, post) => {
     if (error) {
       return res.status(500).json({ message: error });
@@ -81,7 +119,7 @@ postRouter.post("/post/like/:postId", (req, res) => {
 // “/post/comment/:postID”
 // Add to comment array of posts database
 
-postRouter.post("/post/comment/:postId", (req, res) => {
+postRouter.patch("/post/comment/:postId", (req, res) => {
   Post.findOne({ _id: req.params.postId }, (error, post) => {
     if (error) {
       return res.status(500).json({ message: error });
@@ -89,10 +127,35 @@ postRouter.post("/post/comment/:postId", (req, res) => {
     if (!post) {
       return res.status(404).json({ message: "post not found" });
     } else {
+      const today = new Date();
+      const date =
+        today.getFullYear() +
+        "-" +
+        (today.getMonth() + 1) +
+        "-" +
+        today.getDate();
+      let hours = today.getHours();
+      if (hours.toString().length == 1) {
+        hours = "0" + hours;
+      }
+      let minutes = today.getMinutes();
+      if (minutes.toString().length == 1) {
+        minutes = "0" + minutes;
+      }
+      const time = hours + ":" + minutes;
       let currComments = post.comments;
+      const newComment = {
+        name: req.body.name,
+        username: req.body.username,
+        comment: req.body.comment,
+        date: date,
+        time: time,
+      };
+      currComments.push(newComment);
+
       Post.findOneAndUpdate(
         { _id: req.params.postId },
-        { comments: currComments + 1 },
+        { comments: currComments },
         (error, oldPost) => {
           if (error) {
             return res.status(500).json({ message: error });

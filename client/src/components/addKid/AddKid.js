@@ -75,7 +75,7 @@ class AddKid extends React.Component {
           <input
             type="text"
             label="Age"
-            placeholder="Age"
+            placeholder="Date of Birth (YYYY-MM-DD)"
             className="input__field"
             onChange={(e) => this.handleChange(e, "dateOfBirth")}
             value={this.state.dateOfBirth}
@@ -105,7 +105,9 @@ class AddKid extends React.Component {
           />
         </form>
         <div className="addKid__btn">
-          <button className="btn-style2">Cancel</button>
+          <Link to="/kids">
+            <button className="btn-style2">Cancel</button>
+          </Link>
           <button className="btn-style2" onClick={this.submitHandler}>
             Add
           </button>

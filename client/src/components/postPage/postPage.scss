@@ -1,0 +1,124 @@
+.postPage {
+  // background-color: white;
+  color: white;
+  border: 1px solid #ffffff;
+  margin-left: 0rem;
+  margin-bottom: 0rem;
+  border-radius: 6px;
+  width: 34rem;
+  &__timeStamp {
+    display: flex;
+    padding-right: 0.5rem;
+  }
+  &__reactions {
+    display: flex;
+    align-items: center;
+    padding-top: 0.3rem;
+  }
+  &__info {
+    margin-left: 1rem;
+  }
+  &__user {
+    display: flex;
+  }
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+  }
+  &__name {
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+  &__message {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__likeBtn {
+    border: 0;
+    background-color: #ffffff;
+    color: #552534;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-right: 0.5rem;
+  }
+  &__test {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ffffff;
+    background-color: #ffffff;
+    color: #552534;
+  }
+  &__date {
+    margin-right: 0.5rem;
+  }
+  &__commentArea {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  &__addComment {
+    background-color: #552534;
+    color: #ffffff;
+    padding: 0.2rem;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ffffff;
+    &::placeholder {
+      color: #ffffff;
+    }
+  }
+  &__commentBtn {
+    background-color: white;
+    border: 0;
+    border-radius: 4px;
+    height: 3.3rem;
+    font-weight: 600;
+  }
+}
+
+.individual-post {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.replies {
+  color: #ffffff;
+  &__single-reply {
+    border: 1px solid #ffffff;
+    border-radius: 6px;
+    width: fit-content;
+    background-color: #ffffff;
+    color: #552534;
+    padding: 2px;
+  }
+  &__profile {
+    display: flex;
+  }
+  &__name {
+    margin-right: 0.3rem;
+    font-weight: 600;
+  }
+  &__timeStamp {
+    display: flex;
+    justify-content: flex-start;
+    padding-right: 0.5rem;
+  }
+  &__date {
+    margin-right: 0.5rem;
+    margin-top: 0rem;
+  }
+  &__comment {
+    margin-top: 0rem;
+  }
+}
+.goBack-timeline {
+  width: 1rem;
+  height: 1rem;
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  margin-bottom: 2rem;
+}

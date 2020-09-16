@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import React from "react";
+
 import "./searchBarDropDown.scss";
 
 const SearchBarDropDown = (props) => {
@@ -19,21 +19,19 @@ const SearchBarDropDown = (props) => {
     Object.keys(options).length === 0 && options.constructor === Object;
   const optionsList = [];
   optionsList.push(options);
-  console.log("options", options);
 
   return (
     <div className="search-bar-dropdown">
       <div className="search__box">
-        <div>
-          <input
-            type="text"
-            className="search__input"
-            placeholder="Search"
-            value={searchValue}
-            onChange={(e) => onInputChange(e, "search")}
-            onKeyUp={(e) => (e.key === "Enter" ? searchFunction(e) : null)}
-          />
-        </div>
+        <input
+          id="#hey"
+          type="text"
+          className="search__input"
+          placeholder="Search for Branches"
+          value={searchValue}
+          onChange={(e) => onInputChange(e, "search")}
+          onKeyUp={(e) => (e.key === "Enter" ? searchFunction(e) : null)}
+        />
       </div>
       <ul className="result__container">
         {!empty &&
@@ -42,7 +40,13 @@ const SearchBarDropDown = (props) => {
             return (
               <div key={index} className="result">
                 <div className="result__flex">
-                  <div>
+                  <div className="result__box">
+                    {/* <button
+                      className="close-search"
+                      onClick={() => closeFunction()}
+                    >
+                      X
+                    </button> */}
                     <div className="result__div">
                       <p className="result__info">{option.name}</p>
                       <p className="result__info">@{option.username}</p>
@@ -51,7 +55,10 @@ const SearchBarDropDown = (props) => {
                       type="button"
                       key={index}
                       className="result__btn"
-                      onClick={() => addBranch()}
+                      onClick={() => {
+                        addBranch();
+                        onInputChange("", "search");
+                      }}
                     >
                       {added ? "Added!" : "Add branch"}
                     </button>
@@ -79,3 +86,5 @@ const SearchBarDropDown = (props) => {
 };
 
 export default SearchBarDropDown;
+
+//make wrapper div, same width and height as textarea, give it relative and button absolute

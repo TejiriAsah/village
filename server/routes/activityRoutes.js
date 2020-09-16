@@ -86,8 +86,8 @@ activityRouter.get("/:kidId", (req, res) => {
 });
 
 //get activity
-activityRouter.get("/activity/:activityId", (req, res) => {
-  Activity.findOne({ _id: req.params.activityId }, (error, activity) => {
+activityRouter.get("/activity/:kidId", (req, res) => {
+  Activity.findOne({ kidID: req.params.kidId }, (error, activity) => {
     if (error) {
       return res.status(500).json({ message: error });
     }

@@ -15,7 +15,13 @@ class Timeline extends React.Component {
       message: "",
       showModal: true,
       added: false,
+      postMessage: "",
+      posts: [],
     };
+  }
+
+  componentDidMount() {
+    this.getPosts();
   }
 
   hideModal = () => {
@@ -72,24 +78,89 @@ class Timeline extends React.Component {
       });
   };
 
+  getPosts = () => {
+    const user = this.props.reducer.user;
+    axios
+      .get("/posts/" + user.username)
+      .then((response) => {
+        console.log("response", response);
+        if (response.status === 200) {
+          this.setState({
+            posts: response.data,
+          });
+          console.log("posts", this.state.posts);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  likePost = (postID) => {
+    axios
+      .patch("/posts/post/like/" + postID)
+      .then((response) => {
+        if (response.status === 200) {
+          this.getPosts();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  post = () => {
+    const user = this.props.reducer.user;
+    const body = {
+      name: user.name,
+      username: user.username,
+      message: this.state.postMessage,
+    };
+
+    axios
+      .post("/posts/post/" + user.username, body)
+      .then((response) => {
+        if (response.status === 200) {
+          this.getPosts();
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   render() {
     return (
-      <div>
-        <div className="searchBar">
-          <SearchBarDropDown
-            options={this.state.result}
-            onInputChange={this.handleChange}
-            searchValue={this.state.search}
-            message={this.state.message}
-            searchFunction={this.search}
-            showModal={this.state.showModal}
-            closeFunction={this.hideModal}
-            added={this.state.added}
-            addBranch={this.addBranch}
-          />
-        </div>
-        <div>
-          <Posts />
+      <div className="timeline">
+        <div className="scrollAPage">
+          <div className="searchBar">
+            <SearchBarDropDown
+              options={this.state.result}
+              onInputChange={this.handleChange}
+              searchValue={this.state.search}
+              message={this.state.message}
+              searchFunction={this.search}
+              showModal={this.state.showModal}
+              closeFunction={this.hideModal}
+              added={this.state.added}
+              addBranch={this.addBranch}
+            />
+          </div>
+          <div className="timeline__shareBox">
+            <textarea
+              type="text"
+              placeholder="what's happening?"
+              className="timeline__sharePost"
+              onChange={(e) => this.handleChange(e, "postMessage")}
+              value={this.state.postMessage}
+            />
+            <button className="timeline__btn" onClick={() => this.post()}>
+              Share
+            </button>
+          </div>
+          <div className="timeline-Posts">
+            <Posts posts={this.state.posts} likeFunction={this.likePost} />
+          </div>
         </div>
       </div>
     );

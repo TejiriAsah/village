@@ -32,6 +32,8 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
           } else {
             const kids = parent.receivedKids;
             console.log("your kids:", kids);
+            kid.expirationDate = req.body.expirationDate;
+            kid.expirationTime = req.body.expirationTime;
             kids.push(kid);
             console.log("your new kids", kids);
 
@@ -52,7 +54,8 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
                     reason: req.body.reason,
                     parentUserName: req.params.username,
                     otherParentUserName: req.body.receiverusername,
-                    duration: req.body.duration,
+                    expirationDate: req.body.expirationDate,
+                    expirationTime: req.body.expirationTime,
                   });
                   newShare.save((error) => {
                     if (error) {
@@ -112,6 +115,91 @@ shareRouter.get("/:kidId", (req, res) => {
 
 //maybe a check to see if expiration date has reached
 
-// shareRouter.delete("/:kidId")
+shareRouter.delete("/:kidId/:receiverusername", (req, res) => {
+  Kid.findOne({ _id: req.params.kidId }, (error, kid) => {
+    if (error) {
+      return res.status(500).json({ message: error });
+    }
+
+    if (!kid) {
+      return res.status(404).json({ message: "kid not found" });
+    } else {
+      const shares = kid.shares;
+      const newShares = shares.filter((share) => {
+        return share !== req.params.receiverusername;
+      });
+
+      Kid.findOneAndUpdate(
+        { _id: req.params.kidId },
+        { shares: newShares },
+        (error, oldKid) => {
+          if (error) {
+            return res.status(500).json({ message: error });
+          }
+
+          if (!oldKid) {
+            return res.status(404).json({ message: "kid not found" });
+          } else {
+            Parent.findOne(
+              { username: req.params.receiverusername },
+              (error, parent) => {
+                if (error) {
+                  return res.status(500).json({ message: error });
+                }
+
+                if (!parent) {
+                  return res.status(404).json({ message: "parent not found" });
+                } else {
+                  const receivedKids = parent.receivedKids;
+                  const newReceivedKids = receivedKids.filter((kid) => {
+                    return kid._id.toString() !== req.params.kidId;
+                  });
+
+                  Parent.findOneAndUpdate(
+                    { username: req.params.receiverusername },
+                    { receivedKids: newReceivedKids },
+                    (error, oldParent) => {
+                      if (error) {
+                        return res.status(500).json({ message: error });
+                      }
+
+                      if (!oldParent) {
+                        return res
+                          .status(404)
+                          .json({ message: "parent not found" });
+                      } else {
+                        Share.findOneAndDelete(
+                          {
+                            kidID: req.params.kidId,
+                            otherParentUserName: req.params.receiverusername,
+                          },
+                          (error, share) => {
+                            if (error) {
+                              return res.status(500).json({ message: error });
+                            }
+
+                            if (!share) {
+                              return res
+                                .status(404)
+                                .json({ message: "share not found" });
+                            } else {
+                              return res
+                                .status(200)
+                                .json({ message: "successfully ended share" });
+                            }
+                          }
+                        );
+                      }
+                    }
+                  );
+                }
+              }
+            );
+          }
+        }
+      );
+    }
+  });
+});
 
 module.exports = shareRouter;

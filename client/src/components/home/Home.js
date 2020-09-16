@@ -29,18 +29,21 @@ class Home extends React.Component {
   }
 
   render() {
+    const branches = this.props.reducer.user.branches;
     return (
       <div className="navbar">
         <div className="navbar__profile">
           <img src={dad} alt="profile" className="profilePic" />
           <div className="profile__container">
-            <p className="profile__box">Captain Zaraki</p>
-            <p className="profile__box">@tobiasWole__</p>
+            <p className="profile__box">{this.props.reducer.user.name}</p>
+            <p className="profile__box">@{this.props.reducer.user.username}</p>
           </div>
           <Link to="/branches" className="link-style">
             <div className="navbar__page">
               <img src={branch2} alt="friends icon" className="navbar__icon" />
-              <p className="navbar__item">No. of Branches</p>
+              <p className="navbar__item">
+                {branches === 1 ? branches + " Branch" : branches + " Branches"}
+              </p>
             </div>
           </Link>
         </div>

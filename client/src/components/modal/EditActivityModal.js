@@ -8,7 +8,8 @@ class EditActivityModal extends React.Component {
   constructor() {
     super();
     this.state = {
-      id: "",
+      kidId: "",
+      activityId: "",
       name: "",
       location: "",
       time: "",
@@ -29,15 +30,16 @@ class EditActivityModal extends React.Component {
   };
 
   componentDidMount() {
-    const activityId = this.props.match.params.id;
+    const kidId = this.props.match.params.id;
     console.log("match3", this.props.match);
-    if (activityId) {
+    if (kidId) {
       axios
-        .get("/kids/activities/activity/" + activityId)
+        .get("/kids/activities/activity/" + kidId)
         .then((response) => {
           console.log("the response for activity", response);
           this.setState({
-            id: activityId,
+            kidId: kidId,
+            activityId: response.data._id,
             name: response.data.name,
             location: response.data.location,
             time: response.data.time,
@@ -60,17 +62,22 @@ class EditActivityModal extends React.Component {
       dontForget: this.state.dontForget,
     };
     axios
-      .put("/kids/activities/edit-activity/" + this.state.id, updatedActivity)
+      .put(
+        "/kids/activities/edit-activity/" + this.state.activityId,
+        updatedActivity
+      )
       .then((response) => {
         if (response.status === 200) {
           this.props.removeModal();
-          this.props.history.push("/kids/activities/" + this.state.id);
+          console.log("state.id", this.state.kidId);
+          this.props.history.push("/kids/child/" + this.state.kidId);
         }
       })
       .catch((error) => console.log("your error", error));
   };
 
   render() {
+    console.log("here it is", this.state);
     return (
       <>
         <Modal>

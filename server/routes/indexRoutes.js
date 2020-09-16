@@ -40,6 +40,7 @@ indexRouter.post("/sign-up", (req, res) => {
                     name: user.name,
                     username: user.username,
                     email: user.email,
+                    branches: user.branches.length,
                   };
                   jwt.sign(
                     payload,
@@ -84,6 +85,7 @@ indexRouter.post("/login", (req, res) => {
             name: parent.name,
             username: parent.username,
             email: parent.email,
+            branches: parent.branches.length,
           };
           jwt.sign(
             payload,

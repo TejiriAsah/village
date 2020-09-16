@@ -5,7 +5,8 @@ let ShareSchema = new mongoose.Schema({
   reason: { type: String, required: true },
   parentUserName: { type: String, required: true },
   otherParentUserName: { type: String, required: true },
-  duration: { type: String, required: true },
+  expirationDate: { type: String, required: true },
+  expirationTime: { type: String, required: true },
 });
 
 let Share = mongoose.model("shares", ShareSchema);

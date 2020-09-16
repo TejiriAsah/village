@@ -68,6 +68,7 @@ class EditKid extends React.Component {
       activities: this.state.activities,
       additionalNotes: this.state.additionalNotes,
     };
+    console.log("updated kid", updatedKid);
     axios
       .put("/kids/edit/" + this.state.id, updatedKid)
       .then((response) => {
@@ -135,8 +136,10 @@ class EditKid extends React.Component {
           />
         </form>
         <div className="addKid__btn">
-          <button className="btn-style2">Cancel</button>
-          <button className="btn-style2" onClick={this.submitHandler}>
+          <Link to={"/kids/child/" + kidId}>
+            <button className="btn-style2">Cancel</button>
+          </Link>
+          <button className="btn-style2" onClick={(e) => this.submitHandler(e)}>
             Save
           </button>
         </div>

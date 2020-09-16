@@ -37,6 +37,9 @@
     padding-left: 0.5rem;
     // margin: 1rem 1.5rem;
     margin: 1rem;
+    &::placeholder {
+      color: #552534;
+    }
   }
   &__btn {
     display: flex;
@@ -128,6 +131,20 @@
     box-shadow: 1px 1px 1px black;
     padding: 16px;
     left: 15%;
+    top: 20%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+  }
+  &__deleteKid {
+    background-color: white;
+    color: #552534;
+    position: fixed;
+    z-index: 500;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    left: 15rem;
     top: 20%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;

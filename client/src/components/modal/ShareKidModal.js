@@ -9,7 +9,8 @@ class ShareKidModal extends React.Component {
     super();
     this.state = {
       reason: "",
-      duration: "",
+      expirationDate: "",
+      expirationTime: "",
       receiverusername: "",
     };
   }
@@ -23,12 +24,14 @@ class ShareKidModal extends React.Component {
   submitHandler = (e) => {
     const parentUsername = this.props.reducer.user.username;
     const kid = this.props.kidId;
+    console.log("kidid", kid);
 
     e.preventDefault();
 
     const newShare = {
       reason: this.state.reason,
-      duration: this.state.duration,
+      expirationDate: this.state.expirationDate,
+      expirationTime: this.state.expirationTime,
       receiverusername: this.state.receiverusername,
     };
 
@@ -64,13 +67,23 @@ class ShareKidModal extends React.Component {
                 value={this.state.reason}
                 onChange={(e) => this.handleChange(e, "reason")}
               />
-              <h2 className="modal__label"> Duration</h2>
+              <h2 className="modal__label"> Expiration Date</h2>
               <input
                 type="text"
                 className="modal__input"
-                value={this.state.duration}
-                onChange={(e) => this.handleChange(e, "duration")}
+                placeholder="YYYY-MM-DD"
+                value={this.state.expirationDate}
+                onChange={(e) => this.handleChange(e, "expirationDate")}
               />
+              <h2 className="modal__label"> Expiration Time</h2>
+              <input
+                type="text"
+                className="modal__input"
+                placeholder="HH:MM"
+                value={this.state.expirationTime}
+                onChange={(e) => this.handleChange(e, "expirationTime")}
+              />
+
               <h2 className="modal__label"> Sharing with ?</h2>
               <input
                 type="text"

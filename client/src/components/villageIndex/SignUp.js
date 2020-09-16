@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { registerUser } from "../../store/Actions";
 import PropTypes from "prop-types";
 import "./login.scss";
+import villageLogo from "../../assets/logo.png";
 
 class SignUp extends React.Component {
   constructor() {
@@ -46,46 +47,49 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="login">
-        <h3 className="login__heading"> Sign Up for Village </h3>
-        <div className="login__box">
-          <input
-            type="text"
-            placeholder="Name"
-            className="login__content"
-            value={this.state.name}
-            onChange={(e) => this.handleChange(e, "name")}
-          />
-          <input
-            type="text"
-            placeholder="Username"
-            className="login__content"
-            value={this.state.username}
-            onChange={(e) => this.handleChange(e, "username")}
-          />
-          <input
-            type="text"
-            placeholder="Email"
-            className="login__content"
-            value={this.state.email}
-            onChange={(e) => this.handleChange(e, "email")}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            className="login__content"
-            value={this.state.password}
-            onChange={(e) => this.handleChange(e, "password")}
-          />
-        </div>
-        <button className="login__btn" onClick={() => this.submitHandler()}>
-          Sign Up
-        </button>
-        <div className="login__redirect">
-          <p className="login__alternative">Already have an account? </p>
-          <Link to="/app/login">
-            <p className="login__alternative">Log in</p>
-          </Link>
+      <div className="login-page">
+        <img src={villageLogo} alt="logo" className="logo" />
+        <div className="login">
+          <h3 className="login__heading"> Sign Up for Village </h3>
+          <div className="login__box">
+            <input
+              type="text"
+              placeholder="Name"
+              className="login__content"
+              value={this.state.name}
+              onChange={(e) => this.handleChange(e, "name")}
+            />
+            <input
+              type="text"
+              placeholder="Username"
+              className="login__content"
+              value={this.state.username}
+              onChange={(e) => this.handleChange(e, "username")}
+            />
+            <input
+              type="text"
+              placeholder="Email"
+              className="login__content"
+              value={this.state.email}
+              onChange={(e) => this.handleChange(e, "email")}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              className="login__content"
+              value={this.state.password}
+              onChange={(e) => this.handleChange(e, "password")}
+            />
+          </div>
+          <button className="login__btn" onClick={() => this.submitHandler()}>
+            Sign Up
+          </button>
+          <div className="login__redirect">
+            <p className="login__alternative">Already have an account? </p>
+            <Link to="/app/login">
+              <p className="login__alternative">Log in</p>
+            </Link>
+          </div>
         </div>
       </div>
     );

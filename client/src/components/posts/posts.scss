@@ -1,0 +1,66 @@
+.post {
+  color: white;
+  border: 1px solid #ffffff;
+  margin-left: 0rem;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+  width: 34rem;
+  &__timeStamp {
+    display: flex;
+    padding-right: 0.5rem;
+  }
+  &__reactions {
+    display: flex;
+    align-items: center;
+    padding-top: 0.3rem;
+  }
+  &__info {
+    margin-left: 1rem;
+  }
+  &__user {
+    display: flex;
+  }
+  &__name {
+    font-weight: 600;
+    margin-right: 0.3rem;
+  }
+  &__message {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__likeBtn {
+    border: 0;
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    color: #552534;
+    font-size: 1rem;
+    font-weight: normal;
+    margin-right: 0.5rem;
+  }
+  &__test {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ffffff;
+    background-color: #ffffff;
+    color: #552534;
+  }
+  &__date {
+    margin-right: 0.5rem;
+  }
+  &__icon {
+    width: 1rem;
+    height: 1rem;
+    margin-left: 0.5rem;
+  }
+  &__comment-counter {
+    display: flex;
+    align-self: center;
+  }
+}
+
+.link-styleWhite-text {
+  color: #ffffff;
+  text-decoration: none;
+}

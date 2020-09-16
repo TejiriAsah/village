@@ -4,8 +4,8 @@
   background-color: #ffffff;
   width: 25rem;
   text-align: center;
-  margin-left: 5rem;
-  margin-top: 5rem;
+  // margin-left: 5rem;
+  // margin-top: 5rem;
   padding-bottom: 1.5rem;
   border-radius: 15px;
   &__heading {
@@ -25,6 +25,9 @@
     padding: 0.5rem;
     color: #552534;
     border-bottom: 1px solid #552534;
+    &::placeholder {
+      color: #552534;
+    }
   }
   &__btn {
     margin-top: 1rem;
@@ -45,4 +48,14 @@
     font-size: 0.8rem;
     margin-left: 0.3rem;
   }
+}
+.login-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 20rem;
 }

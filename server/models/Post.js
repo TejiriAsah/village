@@ -3,11 +3,20 @@
 let mongoose = require("mongoose");
 
 let PostSchema = new mongoose.Schema({
+  name: { type: String, required: true },
   username: { type: String, required: true },
   message: { type: String, required: true },
   likes: { type: Number, default: 0, required: false },
   comments: {
-    type: [{ username: String, comment: String, date: String, time: String }],
+    type: [
+      {
+        name: String,
+        username: String,
+        comment: String,
+        date: String,
+        time: String,
+      },
+    ],
     required: false,
   },
   date: { type: String, required: true },

@@ -4,6 +4,7 @@ import goBack from "../../assets/left-arrow.png";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import AddActivityModal from "../modal/AddActivityModal";
+import EditActivityModal from "../modal/EditActivityModal";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -22,6 +23,7 @@ class KidsProfile extends React.Component {
       additionalNotes: "",
       showActivity: -1,
       showModal: false,
+      showEditActivityModal: false,
       sharedKid: false,
     };
   }
@@ -110,6 +112,20 @@ class KidsProfile extends React.Component {
     });
     this.updateKid();
   };
+
+  showEditActivityModal = () => {
+    this.setState({
+      showEditActivityModal: true,
+    });
+  };
+
+  hideEditActivityModal = () => {
+    this.setState({
+      showEditActivityModal: false,
+    });
+    this.updateKid();
+  };
+
   render() {
     const allergies = this.state.allergies;
     const dietaryRestrictions = this.state.dietaryRestrictions;
@@ -239,16 +255,21 @@ class KidsProfile extends React.Component {
                               })}
                           </div>
                         </div>
+
                         {!this.state.sharedKid && (
-                          <Link
-                            to={
-                              "/kids/activities/edit-activity/" + activity._id
-                            }
+                          <button
+                            className="activity-div__editBtn"
+                            onClick={() => this.showEditActivityModal()}
                           >
-                            <button className="activity-div__editBtn">
-                              Edit
-                            </button>
-                          </Link>
+                            Edit
+                          </button>
+                        )}
+                        {this.state.showEditActivityModal && (
+                          <div>
+                            <EditActivityModal
+                              removeModal={this.hideEditActivityModal}
+                            />
+                          </div>
                         )}
                       </div>
                     )}
