@@ -1,0 +1,51 @@
+@import "./variables";
+
+@mixin buttonWhiteBackground {
+  background-color: #ffffff;
+  color: #552534;
+  width: 7rem;
+  height: 2rem;
+  margin-top: 1rem;
+  margin-left: 2rem;
+  border: 0;
+  border-radius: 20px;
+}
+
+@mixin buttonColorBackground {
+  background-color: #552534;
+  color: #ffffff;
+}
+
+.btn-style {
+  color: #552534;
+  background-color: #ffffff;
+  width: 9rem;
+  height: 2.3rem;
+  margin-top: 1rem;
+  margin-left: 25rem;
+  // margin-left: 2rem;
+  border: 0;
+  border-radius: 20px;
+}
+
+.btn-style2 {
+  color: #552534;
+  background-color: #ffffff;
+  width: 7rem;
+  height: 2rem;
+  margin-top: 1rem;
+  // margin-left: 25rem;
+  margin-left: 2rem;
+  border: 0;
+  border-radius: 20px;
+}
+
+.btn-style3 {
+  color: #552534;
+  background-color: #ffffff;
+  width: 8rem;
+  height: 1.5rem;
+  margin-left: 1rem;
+  border: 0;
+  border-radius: 15px;
+}

@@ -43,43 +43,45 @@ class ChangePasswordModal extends React.Component {
     return (
       <>
         <Modal>
-          <h2 className="modal__heading">Change password</h2>
-          <form className="modal__form">
-            <input
-              type="password"
-              className="modal__input"
-              placeholder="Old Password"
-              onChange={(e) => this.handleChange(e, "oldPassword")}
-              value={this.state.oldPassword}
-            ></input>
-            <input
-              type="password"
-              className="modal__input"
-              placeholder="New Password"
-              onChange={(e) => this.handleChange(e, "password")}
-              value={this.state.password}
-            />
-            <input
-              type="password"
-              className="modal__input"
-              placeholder="Confirm New Password"
-              onChange={(e) => this.handleChange(e, "confirmNewPassword")}
-              value={this.state.confirmNewPassword}
-            />
-          </form>
-          <div className="modal__btn">
-            <button
-              className="modal__btnChoices"
-              onClick={() => this.props.removeModal()}
-            >
-              Cancel
-            </button>
-            <button
-              className="modal__btnChoices"
-              onClick={(e) => this.submitHandler(e)}
-            >
-              Save
-            </button>
+          <div className="modal__changePassword">
+            <h2 className="modal__heading">Change Password</h2>
+            <form className="modal__form">
+              <input
+                type="password"
+                className="modal__input"
+                placeholder="Old Password"
+                onChange={(e) => this.handleChange(e, "oldPassword")}
+                value={this.state.oldPassword}
+              ></input>
+              <input
+                type="password"
+                className="modal__input"
+                placeholder="New Password"
+                onChange={(e) => this.handleChange(e, "password")}
+                value={this.state.password}
+              />
+              <input
+                type="password"
+                className="modal__input"
+                placeholder="Confirm New Password"
+                onChange={(e) => this.handleChange(e, "confirmNewPassword")}
+                value={this.state.confirmNewPassword}
+              />
+            </form>
+            <div className="modal__btn">
+              <button
+                className="modal__btnChoices"
+                onClick={() => this.props.removeModal()}
+              >
+                Cancel
+              </button>
+              <button
+                className="modal__btnChoices"
+                onClick={(e) => this.submitHandler(e)}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </Modal>
       </>

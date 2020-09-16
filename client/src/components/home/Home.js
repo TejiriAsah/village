@@ -24,7 +24,7 @@ class Home extends React.Component {
       prevProps.reducer.isAuthenticated !== this.props.reducer.isAuthenticated
     ) {
       console.log("user is no longer authenticated");
-      this.props.history.push("/login");
+      this.props.history.push("/app/login");
     }
   }
 
@@ -47,7 +47,9 @@ class Home extends React.Component {
         <div className="navbar__list">
           <div className="navbar__page">
             <img src={hut} alt="timeline icon" className="navbar__icon" />
-            <p className="navbar__item link-style">My Hut</p>
+            <Link to="/timeline" className="link-style">
+              <p className="navbar__item link-style">My Hut</p>
+            </Link>
           </div>
           <div className="navbar__page">
             <img src={profile} alt="profile icon" className="navbar__icon" />

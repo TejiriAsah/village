@@ -80,10 +80,11 @@ class EditKid extends React.Component {
 
   render() {
     console.log("state", this.state);
+    const kidId = this.props.match.params.id;
     return (
       <div>
         <div className="addKid__nav">
-          <Link to="/kids">
+          <Link to={"/kids/child/" + kidId}>
             <img src={goBack} alt="previous page" className="goBack" />
           </Link>
           <h1 className="addKid__header"> Edit kid</h1>
@@ -93,7 +94,7 @@ class EditKid extends React.Component {
             type="text"
             label="Name"
             placeholder="Name"
-            className="bob"
+            className="input__field"
             onChange={(e) => this.handleChange(e, "name")}
             value={this.state.name}
           />
@@ -101,7 +102,7 @@ class EditKid extends React.Component {
             type="text"
             label="Age"
             placeholder="Age"
-            className="bob"
+            className="input__field"
             onChange={(e) => this.handleChange(e, "dateOfBirth")}
             value={this.state.dateOfBirth}
           />
@@ -128,7 +129,7 @@ class EditKid extends React.Component {
             type="text"
             label="Additional notes"
             placeholder="Additional Notes"
-            className="bob"
+            className="input__field"
             onChange={(e) => this.handleChange(e, "additionalNotes")}
             value={this.state.additionalNotes}
           />

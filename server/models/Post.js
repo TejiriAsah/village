@@ -6,7 +6,12 @@ let PostSchema = new mongoose.Schema({
   username: { type: String, required: true },
   message: { type: String, required: true },
   likes: { type: Number, default: 0, required: false },
-  comments: { type: Array, required: false },
+  comments: {
+    type: [{ username: String, comment: String, date: String, time: String }],
+    required: false,
+  },
+  date: { type: String, required: true },
+  time: { type: String, required: true },
 });
 
 let Post = mongoose.model("posts", PostSchema);

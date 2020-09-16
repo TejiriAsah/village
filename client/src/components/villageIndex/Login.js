@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { loginUser } from "../../store/Actions";
 import PropTypes from "prop-types";
@@ -63,7 +63,9 @@ class Login extends React.Component {
         </button>
         <div className="login__redirect">
           <p className="login__alternative">Don't have an account? </p>
-          <p className="login__alternative">Sign up</p>
+          <Link to="/app/signup">
+            <p className="login__alternative">Sign up</p>
+          </Link>
         </div>
       </div>
     );

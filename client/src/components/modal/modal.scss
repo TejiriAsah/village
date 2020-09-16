@@ -1,26 +1,26 @@
 @import "../partials/variables";
 
 .modal {
-  background-color: white;
-  color: #552534;
-  position: fixed;
-  z-index: 500;
-  width: 70%;
-  border: 1px solid black;
-  box-shadow: 1px 1px 1px black;
-  padding: 16px;
-  // left: 15%;
-  top: 20%;
-  box-sizing: border-box;
-  transition: all 0.3s ease-out;
+  // background-color: white;
+  // color: #552534;
+  // position: fixed;
+  // z-index: 500;
+  // width: 70%;
+  // border: 1px solid black;
+  // box-shadow: 1px 1px 1px black;
+  // padding: 16px;
+  // // left: 15%;
+  // top: 20%;
+  // box-sizing: border-box;
+  // transition: all 0.3s ease-out;
   &__heading {
     padding-top: 1rem;
     margin-left: 1.5rem;
     margin-top: 0rem;
   }
-  &__form {
-    padding-left: 1rem;
-  }
+  // &__form {
+  //   padding-left: 1rem;
+  // }
   &__label {
     margin: 0;
     font-size: 1rem;
@@ -71,5 +71,65 @@
   }
   &__dontForget-header {
     margin-left: 1rem;
+  }
+  &__changePassword {
+    width: 62%;
+    background-color: white;
+    color: #552534;
+    position: fixed;
+    z-index: 500;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    // left: 15%;
+    top: 20%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+  }
+  &__addActivity {
+    width: 60%;
+    background-color: white;
+    color: #552534;
+    position: fixed;
+    z-index: 500;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    // left: 15%;
+    top: 20%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+  }
+  &__editActivity {
+    width: 60%;
+    background-color: white;
+    color: #552534;
+    position: fixed;
+    z-index: 500;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    // left: 15%;
+    top: 20%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
+  }
+  &__shareKid {
+    width: 60%;
+    background-color: white;
+    color: #552534;
+    position: fixed;
+    z-index: 500;
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: 1px 1px 1px black;
+    padding: 16px;
+    left: 15%;
+    top: 20%;
+    box-sizing: border-box;
+    transition: all 0.3s ease-out;
   }
 }

@@ -82,13 +82,15 @@ class KidsPage extends React.Component {
 
                     <button className="kid-card__shareBtn">Remove</button>
                   </div>
-                  <div>
-                    {kid.shares.length > 0 && <p>Sharing with: </p>}
-                    {kid.shares.length > 0 &&
-                      kid.shares.map((username, index) => {
-                        return <p key={index}>{username}</p>;
-                      })}
-                  </div>
+                </div>
+                <div className="kid-card__sharing">
+                  {kid.shares.length > 0 && (
+                    <p className="kid-card__sharing-header">Sharing with: </p>
+                  )}
+                  {kid.shares.length > 0 &&
+                    kid.shares.map((username, index) => {
+                      return <p key={index}>{username}</p>;
+                    })}
                 </div>
               </div>
             );

@@ -1,3 +1,6 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
 .kids-div {
   width: 100%;
   max-height: 100vh;
@@ -6,11 +9,12 @@
 
 .kid-card {
   width: 12rem;
-  height: 17rem;
+  height: fit-content;
   margin-top: 3rem;
   margin-left: 2rem;
   border-radius: 15px;
   border: 1px solid white;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
 
@@ -33,7 +37,6 @@
     color: #552534;
   }
   &__info {
-    // margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
     height: 5rem;
@@ -48,6 +51,13 @@
     margin-top: 0.5rem;
     background-color: #552534;
     color: #ffffff;
+  }
+  &__sharing {
+    color: #552534;
+    padding-left: 0.5rem;
+  }
+  &__sharing-header {
+    font-weight: 600;
   }
 }
 
@@ -66,4 +76,26 @@
   margin-left: 2rem;
   border: 0;
   border-radius: 20px;
+}
+
+.btn-style {
+  color: #552534;
+  background-color: #ffffff;
+  width: 9rem;
+  height: 2.3rem;
+  margin-top: 1rem;
+  margin-left: 25rem;
+  // margin-left: 2rem;
+  border: 0;
+  border-radius: 20px;
+}
+
+.btn-style3 {
+  color: #552534;
+  background-color: #ffffff;
+  width: 8rem;
+  height: 1.5rem;
+  margin-left: 1rem;
+  border: 0;
+  border-radius: 15px;
 }

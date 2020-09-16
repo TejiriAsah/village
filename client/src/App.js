@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Home from "./components/home/Home";
 import ProfilePage from "./components/profilePage/ProfilePage";
+import Timeline from "./components/timeline/Timeline";
 import "./App.css";
 import Login from "./components/villageIndex/Login";
 import SignUp from "./components/villageIndex/SignUp";
@@ -13,13 +14,42 @@ import Requests from "./components/requests/Requests";
 import Branches from "./components/branches/Branches";
 import ShareKidModal from "./components/modal/ShareKidModal";
 import EditActivityModal from "./components/modal/EditActivityModal";
-
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import { setCurrentUser, logoutUser } from "./store/Actions";
 import { store } from "./store/Reducer";
 import PrivateRoute from "./components/privateRoute/PrivateRoute";
 
+const PublicLayout = (props) => (
+  <div>
+    <Switch>
+      <Route path="/app/login" component={Login} />
+      <Route path="/app/signup" component={SignUp} />
+      <Route path="/" component={Login} />
+    </Switch>
+  </div>
+);
+
+const PrivateLayout = (props) => (
+  <div className="tester">
+    <Home />
+    <Switch>
+      <PrivateRoute path="/profile" exact component={ProfilePage} />
+      <PrivateRoute path="/timeline" component={Timeline} />
+      <PrivateRoute path="/branches" exact component={Branches} />
+      <PrivateRoute path="/kids" exact component={KidsPage} />
+      <PrivateRoute path="/kids/add" component={AddKid} />
+      <PrivateRoute
+        path="/kids/activities/edit-activity/:id"
+        component={EditActivityModal}
+      />
+      <PrivateRoute path="/kids/child/:id" exact component={KidsProfile} />
+      <PrivateRoute path="/kids/edit/:id" component={EditKid} />
+      <Route path="/kids/share" component={ShareKidModal} />
+      <PrivateRoute path="/requests" component={Requests} />
+    </Switch>
+  </div>
+);
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
   // Set auth token header auth
@@ -35,40 +65,19 @@ if (localStorage.jwtToken) {
     // Logout user
     store.dispatch(logoutUser());
     // Redirect to login
-    window.location.href = "./";
+    window.location.href = "./app";
   }
 }
-
 function App() {
   return (
     <BrowserRouter>
-      <div className="tester">
-        <Home />
-        <div>
-          <Switch>
-            <Route path="/login" component={Login} />
-            <Route path="/signup" component={SignUp} />
-            <PrivateRoute path="/profile" exact component={ProfilePage} />
-            <PrivateRoute path="/branches" exact component={Branches} />
-            <PrivateRoute path="/kids" exact component={KidsPage} />
-            <PrivateRoute path="/kids/add" component={AddKid} />
-            <PrivateRoute
-              path="/kids/activities/edit-activity/:id"
-              component={EditActivityModal}
-            />
-            <PrivateRoute
-              path="/kids/child/:id"
-              exact
-              component={KidsProfile}
-            />
-            <PrivateRoute path="/kids/edit/:id" component={EditKid} />
-            <Route path="/kids/share" component={ShareKidModal} />
-            <PrivateRoute path="/requests" component={Requests} />
-          </Switch>
-        </div>
+      <div>
+        <Switch>
+          <Route path="/app" component={PublicLayout} />
+          <Route path="/" component={PrivateLayout} />
+        </Switch>
       </div>
     </BrowserRouter>
   );
 }
-
 export default App;

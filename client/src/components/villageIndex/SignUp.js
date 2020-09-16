@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { registerUser } from "../../store/Actions";
 import PropTypes from "prop-types";
@@ -83,7 +83,9 @@ class SignUp extends React.Component {
         </button>
         <div className="login__redirect">
           <p className="login__alternative">Already have an account? </p>
-          <p className="login__alternative">Log in</p>
+          <Link to="/app/login">
+            <p className="login__alternative">Log in</p>
+          </Link>
         </div>
       </div>
     );

@@ -68,7 +68,7 @@ class AddKid extends React.Component {
             type="text"
             label="Name"
             placeholder="Name"
-            className="bob"
+            className="input__field"
             onChange={(e) => this.handleChange(e, "name")}
             value={this.state.name}
           />
@@ -76,7 +76,7 @@ class AddKid extends React.Component {
             type="text"
             label="Age"
             placeholder="Age"
-            className="bob"
+            className="input__field"
             onChange={(e) => this.handleChange(e, "dateOfBirth")}
             value={this.state.dateOfBirth}
           />
@@ -99,7 +99,7 @@ class AddKid extends React.Component {
             type="text"
             label="Additional notes"
             placeholder="Additional Notes"
-            className="bob"
+            className="input__field"
             onChange={(e) => this.handleChange(e, "additionalNotes")}
             value={this.state.additionalNotes}
           />
