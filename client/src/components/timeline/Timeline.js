@@ -5,6 +5,7 @@ import axios from "axios";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Posts from "../posts/Posts";
+import villageIcon from "../../assets/logo.png";
 
 class Timeline extends React.Component {
   constructor() {
@@ -127,18 +128,21 @@ class Timeline extends React.Component {
   render() {
     return (
       <div className=" timeline scrollAPage">
-        <div className="searchBar">
-          <SearchBarDropDown
-            options={this.state.result}
-            onInputChange={this.handleChange}
-            searchValue={this.state.search}
-            message={this.state.message}
-            searchFunction={this.search}
-            showModal={this.state.showModal}
-            closeFunction={this.hideModal}
-            added={this.state.added}
-            addBranch={this.addBranch}
-          />
+        <div className="timeline-header">
+          <img src={villageIcon} alt="logo icon" className="village-icon" />
+          <div className="searchBar">
+            <SearchBarDropDown
+              options={this.state.result}
+              onInputChange={this.handleChange}
+              searchValue={this.state.search}
+              message={this.state.message}
+              searchFunction={this.search}
+              showModal={this.state.showModal}
+              closeFunction={this.hideModal}
+              added={this.state.added}
+              addBranch={this.addBranch}
+            />
+          </div>
         </div>
         <div className="timeline__shareBox">
           <textarea

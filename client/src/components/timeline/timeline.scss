@@ -3,8 +3,6 @@
 
 .searchBar {
   width: 15rem;
-  margin-left: 18rem;
-  margin-top: 1rem;
 }
 
 .timeline-posts {
@@ -50,4 +48,17 @@
     border: 1px solid #ffffff;
     border-radius: 20px;
   }
+}
+
+.village-icon {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+}
+
+.timeline-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
 }
