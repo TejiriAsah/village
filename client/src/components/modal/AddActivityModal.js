@@ -2,6 +2,9 @@ import React from "react";
 import Modal from "./Modal";
 import TagInputPurple from "../tagInput/TagInputPurple";
 import axios from "axios";
+import { connect } from "react-redux";
+import { setError } from "../../store/Actions";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
 class AddActivityModal extends React.Component {
@@ -44,9 +47,10 @@ class AddActivityModal extends React.Component {
         if (response.status === 200) {
           this.props.history.push("/kids/child/" + kidId);
           this.props.removeModal();
+          this.props.setError("");
         }
       })
-      .catch((error) => console.log("your error", error));
+      .catch((error) => this.props.setError(error.response.data.message));
   };
 
   render() {
@@ -54,6 +58,9 @@ class AddActivityModal extends React.Component {
       <>
         <Modal>
           <div className="modal__addActivity">
+            {this.props.error.length > 0 && (
+              <p className="error-alert">{this.props.error}</p>
+            )}
             <h2 className="modal__heading">Add Activity</h2>
             <form className="modal__form">
               <input
@@ -107,4 +114,17 @@ class AddActivityModal extends React.Component {
   }
 }
 
-export default withRouter(AddActivityModal);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.isAuthenticated,
+  error: state.error,
+});
+
+AddActivityModal.propTypes = {
+  setError: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+};
+
+export default withRouter(
+  connect(mapStateToProps, { setError })(AddActivityModal)
+);

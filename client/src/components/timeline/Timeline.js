@@ -129,36 +129,34 @@ class Timeline extends React.Component {
 
   render() {
     return (
-      <div className="timeline">
-        <div className="scrollAPage">
-          <div className="searchBar">
-            <SearchBarDropDown
-              options={this.state.result}
-              onInputChange={this.handleChange}
-              searchValue={this.state.search}
-              message={this.state.message}
-              searchFunction={this.search}
-              showModal={this.state.showModal}
-              closeFunction={this.hideModal}
-              added={this.state.added}
-              addBranch={this.addBranch}
-            />
-          </div>
-          <div className="timeline__shareBox">
-            <textarea
-              type="text"
-              placeholder="what's happening?"
-              className="timeline__sharePost"
-              onChange={(e) => this.handleChange(e, "postMessage")}
-              value={this.state.postMessage}
-            />
-            <button className="timeline__btn" onClick={() => this.post()}>
-              Share
-            </button>
-          </div>
-          <div className="timeline-Posts">
-            <Posts posts={this.state.posts} likeFunction={this.likePost} />
-          </div>
+      <div className=" timeline scrollAPage">
+        <div className="searchBar">
+          <SearchBarDropDown
+            options={this.state.result}
+            onInputChange={this.handleChange}
+            searchValue={this.state.search}
+            message={this.state.message}
+            searchFunction={this.search}
+            showModal={this.state.showModal}
+            closeFunction={this.hideModal}
+            added={this.state.added}
+            addBranch={this.addBranch}
+          />
+        </div>
+        <div className="timeline__shareBox">
+          <textarea
+            type="text"
+            placeholder="what's happening?"
+            className="timeline__sharePost"
+            onChange={(e) => this.handleChange(e, "postMessage")}
+            value={this.state.postMessage}
+          />
+          <button className="timeline__btn" onClick={() => this.post()}>
+            Share
+          </button>
+        </div>
+        <div className="timeline-Posts">
+          <Posts posts={this.state.posts} likeFunction={this.likePost} />
         </div>
       </div>
     );

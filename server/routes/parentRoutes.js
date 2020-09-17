@@ -19,6 +19,12 @@ parentRouter.get("/:username", (req, res) => {
 
 //change profile password
 parentRouter.put("/change-password/:username", (req, res) => {
+  if (
+    req.body.password.length === 0 ||
+    req.body.confirmNewPassword.length === 0
+  ) {
+    return res.status(400).json({ message: "New password is invalid" });
+  }
   if (req.body.password === req.body.confirmNewPassword) {
     Parent.findOne({ username: req.params.username }, (error, parent) => {
       brcypt.compare(req.body.oldPassword, parent.password, (err, response) => {
@@ -35,7 +41,7 @@ parentRouter.put("/change-password/:username", (req, res) => {
                   if (!oldParent) {
                     return res
                       .status(404)
-                      .json({ message: "profile not found" });
+                      .json({ message: "Profile not found" });
                   } else {
                     return res.status(200).json(oldParent);
                   }
@@ -44,12 +50,12 @@ parentRouter.put("/change-password/:username", (req, res) => {
             });
           });
         } else {
-          return res.status(400).json({ message: "Old password is incorrect" });
+          return res.status(400).json({ message: "Password is incorrect" });
         }
       });
     });
   } else {
-    return res.status(400).json({ message: "password doesn't match" });
+    return res.status(400).json({ message: "Password doesn't match" });
   }
 });
 

@@ -50,6 +50,9 @@ class SignUp extends React.Component {
       <div className="login-page">
         <img src={villageLogo} alt="logo" className="logo" />
         <div className="login">
+          {this.props.error.length > 0 && (
+            <p className="error-alert">{this.props.error}</p>
+          )}
           <h3 className="login__heading"> Sign Up for Village </h3>
           <div className="login__box">
             <input
@@ -98,11 +101,13 @@ class SignUp extends React.Component {
 
 const mapStateToProps = (state) => ({
   reducer: state,
+  error: state.error,
 });
 
 SignUp.propTypes = {
   reducer: PropTypes.object.isRequired,
   registerUser: PropTypes.func.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default withRouter(connect(mapStateToProps, { registerUser })(SignUp));

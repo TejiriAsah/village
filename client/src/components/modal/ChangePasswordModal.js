@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { setError } from "../../store/Actions";
 import PropTypes from "prop-types";
 import Modal from "./Modal";
 import axios from "axios";
@@ -34,9 +35,10 @@ class ChangePasswordModal extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.props.removeModal();
+          this.props.setError("");
         }
       })
-      .catch((error) => console.log("your error", error));
+      .catch((error) => this.props.setError(error.response.data.message));
   };
 
   render() {
@@ -44,6 +46,9 @@ class ChangePasswordModal extends React.Component {
       <>
         <Modal>
           <div className="modal__changePassword">
+            {this.props.error.length > 0 && (
+              <p className="error-alert">{this.props.error}</p>
+            )}
             <h2 className="modal__heading">Change Password</h2>
             <form className="modal__form">
               <input
@@ -91,10 +96,13 @@ class ChangePasswordModal extends React.Component {
 
 const mapStateToProps = (state) => ({
   reducer: state,
+  error: state.error,
 });
 
 ChangePasswordModal.propTypes = {
   reducer: PropTypes.object.isRequired,
+  error: PropTypes.string.isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ChangePasswordModal);
+export default connect(mapStateToProps, { setError })(ChangePasswordModal);

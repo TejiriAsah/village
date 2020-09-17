@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { setError } from "../../store/Actions";
 import "./addKid.scss";
 import goBack from "../../assets/left-arrow.png";
 import { Link, withRouter } from "react-router-dom";
@@ -43,9 +44,13 @@ class AddKid extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.props.history.push("/kids");
+          this.props.setError("");
         }
       })
-      .catch((error) => console.log("your error", error));
+      .catch((error) => {
+        console.log("response error", error.response);
+        this.props.setError(error.response.data.message);
+      });
   };
 
   handleChangeTag = (key, tags) => {
@@ -57,10 +62,14 @@ class AddKid extends React.Component {
   render() {
     return (
       <div>
+        {this.props.reducer.error.length > 0 && (
+          <p className="error-alert">{this.props.reducer.error}</p>
+        )}
         <div className="addKid__nav">
           <Link to="/kids">
             <img src={goBack} alt="previous page" className="goBack" />
           </Link>
+
           <h1 className="addKid__header"> Add a kid</h1>
         </div>
         <form>
@@ -122,6 +131,7 @@ const mapStateToProps = (state) => ({
 
 AddKid.propTypes = {
   reducer: PropTypes.object.isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
-export default withRouter(connect(mapStateToProps)(AddKid));
+export default withRouter(connect(mapStateToProps, { setError })(AddKid));

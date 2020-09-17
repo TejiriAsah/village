@@ -1,6 +1,9 @@
 import React from "react";
 import axios from "axios";
 // import "../addKid.scss";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { setError } from "../../store/Actions";
 import goBack from "../../assets/left-arrow.png";
 import TagInput from "../tagInput/TagInput";
 import { Link, withRouter } from "react-router-dom";
@@ -73,15 +76,19 @@ class EditKid extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.props.history.push("/kids/child/" + this.state.id);
+          this.props.setError("");
         }
       })
-      .catch((error) => console.log("your error", error));
+      .catch((error) => this.props.setError(error.response.data.message));
   };
 
   render() {
     const kidId = this.props.match.params.id;
     return (
       <div>
+        {this.props.reducer.error.length > 0 && (
+          <p className="error-alert">{this.props.reducer.error}</p>
+        )}
         <div className="addKid__nav">
           <Link to={"/kids/child/" + kidId}>
             <img src={goBack} alt="previous page" className="goBack" />
@@ -146,4 +153,13 @@ class EditKid extends React.Component {
   }
 }
 
-export default withRouter(EditKid);
+const mapStateToProps = (state) => ({
+  reducer: state,
+});
+
+EditKid.propTypes = {
+  reducer: PropTypes.object.isRequired,
+  setError: PropTypes.func.isRequired,
+};
+
+export default withRouter(connect(mapStateToProps, { setError })(EditKid));

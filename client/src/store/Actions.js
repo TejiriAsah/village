@@ -54,6 +54,13 @@ export const setCurrentUser = (decoded) => {
   };
 };
 
+// set error
+export const setError = (decoded) => {
+  return {
+    type: "SET_ERROR",
+    payload: decoded,
+  };
+};
 // Log user out
 export const logoutUser = () => (dispatch) => {
   // Remove token from local storage

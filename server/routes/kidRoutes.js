@@ -8,12 +8,23 @@ const Kid = require("../models/Kid");
 kidRouter.post("/:username", (req, res) => {
   Parent.findOne({ username: req.params.username }, (error, parent) => {
     if (error) {
-      console.log("line 11", error);
       return res.status(500).json({ message: error });
     }
     if (!parent) {
       return res.status(404).json({ message: "profile not found" });
     } else {
+      if (Object.keys(req.body).length === 0) {
+        return res
+          .status(400)
+          .json({ message: "Name and Birthdate are required" });
+      }
+
+      if (Object.keys(req.body).length !== 0 && !checkKidKeys(req.body)) {
+        return res
+          .status(400)
+          .json({ message: "Name and Birthdate are required" });
+      }
+
       const newKid = new Kid({
         parentId: parent._id,
         name: req.body.name,
@@ -85,6 +96,13 @@ kidRouter.get("/child/:kidId", (req, res) => {
 // /kids/edit/:username
 
 kidRouter.put("/edit/:kidId", (req, res) => {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(400).json({ message: "Name and Birthdate are required" });
+  }
+
+  if (Object.keys(req.body).length !== 0 && !checkKidKeys(req.body)) {
+    return res.status(400).json({ message: "Name and Birthdate are required" });
+  }
   Kid.findOneAndUpdate(
     { _id: req.params.kidId },
     {
@@ -158,5 +176,8 @@ kidRouter.delete("/:username/:kidId", (req, res) => {
     }
   });
 });
+function checkKidKeys(requiredObj) {
+  return requiredObj.name && requiredObj.dateOfBirth;
+}
 
 module.exports = kidRouter;

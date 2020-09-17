@@ -1,8 +1,8 @@
 import React from "react";
 import { withRouter, Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { loginUser } from "../../store/Actions";
 import PropTypes from "prop-types";
+import { loginUser } from "../../store/Actions";
 import "./login.scss";
 import villageLogo from "../../assets/logo.png";
 
@@ -45,6 +45,9 @@ class Login extends React.Component {
       <div className="login-page">
         <img src={villageLogo} alt="logo" className="logo" />
         <div className="login">
+          {this.props.error.length > 0 && (
+            <p className="error-alert">{this.props.error}</p>
+          )}
           <h3 className="login__heading"> Login to your Village </h3>
           <div className="login__box">
             <input
@@ -79,13 +82,13 @@ class Login extends React.Component {
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.isAuthenticated,
-  // error: state.error,
+  error: state.error,
 });
 
 Login.propTypes = {
   loginUser: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  // error: PropTypes.string.isRequired,
+  error: PropTypes.string.isRequired,
 };
 
 export default withRouter(connect(mapStateToProps, { loginUser })(Login));

@@ -30,12 +30,25 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
           if (!parent) {
             return res.status(404).json({ message: "profile not found" });
           } else {
+            if (Object.keys(req.body).length === 0) {
+              return res
+                .status(400)
+                .json({ message: "All fields are required" });
+            }
+
+            if (
+              Object.keys(req.body).length !== 0 &&
+              !checkShareKeys(req.body)
+            ) {
+              return res
+                .status(400)
+                .json({ message: "All fields are required" });
+            }
             const kids = parent.receivedKids;
             console.log("your kids:", kids);
             kid.expirationDate = req.body.expirationDate;
             kid.expirationTime = req.body.expirationTime;
             kids.push(kid);
-            console.log("your new kids", kids);
 
             Parent.findOneAndUpdate(
               { username: req.body.receiverusername },
@@ -77,7 +90,7 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
                           } else {
                             return res
                               .status(200)
-                              .json({ message: "now sharing kid profile" });
+                              .json({ message: "Now sharing kid profile" });
                           }
                         }
                       );
@@ -122,7 +135,7 @@ shareRouter.delete("/:kidId/:receiverusername", (req, res) => {
     }
 
     if (!kid) {
-      return res.status(404).json({ message: "kid not found" });
+      return res.status(404).json({ message: "Kid not found" });
     } else {
       const shares = kid.shares;
       const newShares = shares.filter((share) => {
@@ -138,7 +151,7 @@ shareRouter.delete("/:kidId/:receiverusername", (req, res) => {
           }
 
           if (!oldKid) {
-            return res.status(404).json({ message: "kid not found" });
+            return res.status(404).json({ message: "Kid not found" });
           } else {
             Parent.findOne(
               { username: req.params.receiverusername },
@@ -148,7 +161,7 @@ shareRouter.delete("/:kidId/:receiverusername", (req, res) => {
                 }
 
                 if (!parent) {
-                  return res.status(404).json({ message: "parent not found" });
+                  return res.status(404).json({ message: "Parent not found" });
                 } else {
                   const receivedKids = parent.receivedKids;
                   const newReceivedKids = receivedKids.filter((kid) => {
@@ -166,7 +179,7 @@ shareRouter.delete("/:kidId/:receiverusername", (req, res) => {
                       if (!oldParent) {
                         return res
                           .status(404)
-                          .json({ message: "parent not found" });
+                          .json({ message: "Parent not found" });
                       } else {
                         Share.findOneAndDelete(
                           {
@@ -181,11 +194,11 @@ shareRouter.delete("/:kidId/:receiverusername", (req, res) => {
                             if (!share) {
                               return res
                                 .status(404)
-                                .json({ message: "share not found" });
+                                .json({ message: "Share not found" });
                             } else {
                               return res
                                 .status(200)
-                                .json({ message: "successfully ended share" });
+                                .json({ message: "Successfully ended share" });
                             }
                           }
                         );
@@ -201,5 +214,14 @@ shareRouter.delete("/:kidId/:receiverusername", (req, res) => {
     }
   });
 });
+
+function checkShareKeys(requiredObj) {
+  return (
+    requiredObj.reason &&
+    requiredObj.otherParentUserName &&
+    requiredObj.expirationTime &&
+    requiredObj.expirationDate
+  );
+}
 
 module.exports = shareRouter;

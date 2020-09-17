@@ -3,6 +3,7 @@ import Modal from "./Modal";
 import axios from "axios";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { setError } from "../../store/Actions";
 
 class ShareKidModal extends React.Component {
   constructor() {
@@ -47,9 +48,10 @@ class ShareKidModal extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.props.removeModal();
+          this.props.setError("");
         }
       })
-      .catch((error) => console.log("your error", error));
+      .catch((error) => this.props.setError(error.response.data.message));
   };
 
   render() {
@@ -57,6 +59,9 @@ class ShareKidModal extends React.Component {
       <>
         <Modal>
           <div className="modal__shareKid">
+            {this.props.error.length > 0 && (
+              <p className="error-alert">{this.props.error}</p>
+            )}
             <h2 className="modal__heading">Share Kid Card?</h2>
             <form className="modal__form">
               <input
@@ -114,10 +119,12 @@ class ShareKidModal extends React.Component {
 
 const mapStateToProps = (state) => ({
   reducer: state,
+  error: state.error,
 });
 
 ShareKidModal.propTypes = {
   reducer: PropTypes.object.isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ShareKidModal);
+export default connect(mapStateToProps, { setError })(ShareKidModal);

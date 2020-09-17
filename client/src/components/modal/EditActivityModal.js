@@ -2,6 +2,9 @@ import React from "react";
 import Modal from "./Modal";
 import TagInputPurple from "../tagInput/TagInputPurple";
 import axios from "axios";
+import { setError } from "../../store/Actions";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 
 class EditActivityModal extends React.Component {
@@ -31,7 +34,7 @@ class EditActivityModal extends React.Component {
 
   componentDidMount() {
     const kidId = this.props.match.params.id;
-    console.log("match3", this.props.match);
+
     if (kidId) {
       axios
         .get("/kids/activities/activity/" + kidId)
@@ -71,9 +74,10 @@ class EditActivityModal extends React.Component {
           this.props.removeModal();
           console.log("state.id", this.state.kidId);
           this.props.history.push("/kids/child/" + this.state.kidId);
+          this.props.setError("");
         }
       })
-      .catch((error) => console.log("your error", error));
+      .catch((error) => this.props.setError(error.response.data.message));
   };
 
   render() {
@@ -81,6 +85,9 @@ class EditActivityModal extends React.Component {
       <>
         <Modal>
           <div className="modal__editActivity">
+            {this.props.error.length > 0 && (
+              <p className="error-alert">{this.props.error}</p>
+            )}
             <h2 className="modal__heading">Edit Activity</h2>
             <form className="modal__form">
               <input
@@ -135,4 +142,17 @@ class EditActivityModal extends React.Component {
   }
 }
 
-export default withRouter(EditActivityModal);
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.isAuthenticated,
+  error: state.error,
+});
+
+EditActivityModal.propTypes = {
+  setError: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool.isRequired,
+  error: PropTypes.string.isRequired,
+};
+
+export default withRouter(
+  connect(mapStateToProps, { setError })(EditActivityModal)
+);

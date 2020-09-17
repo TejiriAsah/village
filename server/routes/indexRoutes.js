@@ -15,17 +15,15 @@ indexRouter.post("/sign-up", (req, res) => {
   Parent.findOne({ username: req.body.username }, (error, parent) => {
     if (parent) {
       return res.status(400).json({
-        message: "Account with username already exists, please try again",
+        message: "Account with username already exists, please try again!",
       });
     } else {
       if (Object.keys(req.body).length === 0) {
-        return res.status(400).json({ message: "Request body missing" });
+        return res.status(400).json({ message: "All fields are required" });
       }
 
       if (Object.keys(req.body).length !== 0 && !checkSignUpKeys(req.body)) {
-        return res
-          .status(400)
-          .json({ message: "Request body must have ALL FIELDS " });
+        return res.status(400).json({ message: "All fields are required" });
       }
 
       const newParent = new Parent({
@@ -39,7 +37,6 @@ indexRouter.post("/sign-up", (req, res) => {
           newParent.password = hash;
           newParent.save((error) => {
             if (error) {
-              console.log("the error", error);
               return res.status(500).send("error", error);
             } else {
               Parent.findOne(
@@ -86,16 +83,14 @@ indexRouter.post("/login", (req, res) => {
     if (!parent) {
       return res
         .status(404)
-        .json({ message: "cannot find account with that username" });
+        .json({ message: "Account with that Username does not exist!" });
     } else {
       if (Object.keys(req.body).length === 0) {
-        return res.status(400).json({ message: "Request body missing" });
+        return res.status(400).json({ message: "All fields are required" });
       }
 
       if (Object.keys(req.body).length !== 0 && !checkLoginKeys(req.body)) {
-        return res
-          .status(400)
-          .json({ message: "Request body must have ALL FIELDS " });
+        return res.status(400).json({ message: "All fields are required" });
       }
 
       bcrypt.compare(req.body.password, parent.password, (err, response) => {
@@ -122,7 +117,7 @@ indexRouter.post("/login", (req, res) => {
             }
           );
         } else {
-          return res.status(400).json({ message: "invalid password" });
+          return res.status(400).json({ message: "Invalid password" });
         }
       });
     }

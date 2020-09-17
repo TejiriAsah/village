@@ -10,8 +10,15 @@ activityRouter.post("/add-activity/:kidId", (req, res) => {
       return res.status(500).json({ message: error });
     }
     if (!kid) {
-      return res.status(404).json({ message: "kid profile not found" });
+      return res.status(404).json({ message: "Kid's profile not found" });
     } else {
+      if (Object.keys(req.body).length === 0) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+
+      if (Object.keys(req.body).length !== 0 && !checkActivityKeys(req.body)) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
       const newActivity = new Activity({
         kidID: kid._id,
         name: req.body.name,
@@ -31,10 +38,10 @@ activityRouter.post("/add-activity/:kidId", (req, res) => {
             { activities: activities },
             (error, oldKid) => {
               if (error) {
-                return res.status(404).json({ message: "profile not found" });
+                return res.status(404).json({ message: "Profile not found" });
               }
               if (!oldKid) {
-                return res.status(404).json({ message: "profile not found" });
+                return res.status(404).json({ message: "Profile not found" });
               } else {
                 return res.status(200).json(oldKid);
               }
@@ -49,6 +56,13 @@ activityRouter.post("/add-activity/:kidId", (req, res) => {
 //edit activity
 
 activityRouter.put("/edit-activity/:activityId", (req, res) => {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  if (Object.keys(req.body).length !== 0 && !checkActivityKeys(req.body)) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
   Activity.findOneAndUpdate(
     { _id: req.params.activityId },
     {
@@ -62,7 +76,7 @@ activityRouter.put("/edit-activity/:activityId", (req, res) => {
         return res.status(500).json({ message: error });
       }
       if (!oldActivity) {
-        return res.status(404).json({ message: "activity not found" });
+        return res.status(404).json({ message: "Activity not found" });
       } else {
         return res.status(200).json(oldActivity);
       }
@@ -78,7 +92,7 @@ activityRouter.get("/:kidId", (req, res) => {
       return res.status(500).json({ message: error });
     }
     if (!activities) {
-      return res.status(404).json({ message: "activity not found" });
+      return res.status(404).json({ message: "Activity not found" });
     } else {
       return res.status(200).json(activities);
     }
@@ -92,12 +106,16 @@ activityRouter.get("/activity/:kidId", (req, res) => {
       return res.status(500).json({ message: error });
     }
     if (!activity) {
-      return res.status(404).json({ message: "activity not found" });
+      return res.status(404).json({ message: "Activity not found" });
     } else {
       console.log("activity", activity);
       return res.status(200).json(activity);
     }
   });
 });
+
+function checkActivityKeys(requiredObj) {
+  return requiredObj.name && requiredObj.location && requiredObj.time;
+}
 
 module.exports = activityRouter;
