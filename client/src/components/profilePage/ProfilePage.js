@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
+import { setError } from "../../store/Actions";
 import PropTypes from "prop-types";
 import "./profilePage.scss";
 import ChangePasswordModal from "../modal/ChangePasswordModal";
@@ -39,6 +40,7 @@ class ProfilePage extends React.Component {
     this.setState({
       showModal: false,
     });
+    this.props.setError("");
   };
 
   render() {
@@ -77,6 +79,7 @@ const mapStateToProps = (state) => ({
 
 ProfilePage.propTypes = {
   reducer: PropTypes.object.isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(ProfilePage);
+export default connect(mapStateToProps, { setError })(ProfilePage);

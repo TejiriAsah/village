@@ -3,6 +3,7 @@ import "./kidsPage.scss";
 import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
+import { setError } from "../../store/Actions";
 import kidPic from "../../assets/child.gif";
 import axios from "axios";
 import ShareKidModal from "../modal/ShareKidModal";
@@ -40,6 +41,7 @@ class KidsPage extends React.Component {
     this.setState({
       showModal: false,
     });
+    this.props.setError("");
     this.getKids();
   };
 
@@ -209,6 +211,7 @@ const mapStateToProps = (state) => ({
 
 KidsPage.propTypes = {
   reducer: PropTypes.object.isRequired,
+  setError: PropTypes.func.isRequired,
 };
 
-export default withRouter(connect(mapStateToProps)(KidsPage));
+export default withRouter(connect(mapStateToProps, { setError })(KidsPage));

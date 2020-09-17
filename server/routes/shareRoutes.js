@@ -14,6 +14,13 @@ const Kid = require("../models/Kid");
 // redirecting back to kid’s page
 
 shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
+  if (Object.keys(req.body).length === 0) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
+
+  if (Object.keys(req.body).length !== 0 && !checkShareKeys(req.body)) {
+    return res.status(400).json({ message: "All fields are required" });
+  }
   Kid.findOne({ _id: req.params.kidId }, (error, kid) => {
     if (error) {
       return res.status(500).json({ message: error });
@@ -30,20 +37,6 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
           if (!parent) {
             return res.status(404).json({ message: "profile not found" });
           } else {
-            if (Object.keys(req.body).length === 0) {
-              return res
-                .status(400)
-                .json({ message: "All fields are required" });
-            }
-
-            if (
-              Object.keys(req.body).length !== 0 &&
-              !checkShareKeys(req.body)
-            ) {
-              return res
-                .status(400)
-                .json({ message: "All fields are required" });
-            }
             const kids = parent.receivedKids;
             console.log("your kids:", kids);
             kid.expirationDate = req.body.expirationDate;

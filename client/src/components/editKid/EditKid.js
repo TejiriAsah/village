@@ -142,7 +142,12 @@ class EditKid extends React.Component {
         </form>
         <div className="addKid__btn">
           <Link to={"/kids/child/" + kidId}>
-            <button className="btn-style2">Cancel</button>
+            <button
+              className="btn-style2"
+              onClick={() => this.props.setError("")}
+            >
+              Cancel
+            </button>
           </Link>
           <button className="btn-style2" onClick={(e) => this.submitHandler(e)}>
             Save
