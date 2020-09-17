@@ -108,7 +108,6 @@ activityRouter.get("/activity/:kidId", (req, res) => {
     if (!activity) {
       return res.status(404).json({ message: "Activity not found" });
     } else {
-      console.log("activity", activity);
       return res.status(200).json(activity);
     }
   });

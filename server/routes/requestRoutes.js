@@ -70,18 +70,18 @@ requestRouter.post("/accept/:username/:tousername", (req, res) => {
       const newRequests = requests.filter((request) => {
         return request.username !== req.params.username;
       });
-      console.log("new request", newRequests);
+
       const acceptedRequest = requests.filter((request) => {
         return request.username === req.params.username;
       });
-      console.log("accepted request", acceptedRequest);
+
       const branches = parent.branches;
       const newBranch = {
         name: acceptedRequest[0].name,
         username: acceptedRequest[0].username,
       };
       branches.push(newBranch);
-      console.log("branches", branches);
+
       Parent.findOneAndUpdate(
         { username: req.params.tousername },
         {

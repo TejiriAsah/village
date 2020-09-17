@@ -22,7 +22,6 @@ class Requests extends React.Component {
     axios
       .get("/requests/" + loggedInUser)
       .then((response) => {
-        console.log("response", response);
         this.setState({
           requests: response.data,
         });
@@ -48,7 +47,6 @@ class Requests extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.getRequests();
-          console.log("the response", response);
         }
       });
   };

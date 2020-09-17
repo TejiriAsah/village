@@ -23,7 +23,6 @@ class ShareKidModal extends React.Component {
   };
 
   submitHandler = (e) => {
-    console.log("reducer", this.props.reducer.error);
     const parentUsername = this.props.reducer.user.username;
     const kid = this.props.kidId;
 
@@ -54,8 +53,6 @@ class ShareKidModal extends React.Component {
           }
         })
         .catch((error) => {
-          console.log("check props", error.response);
-          console.log("check receiver", this.state.receiverusername);
           this.props.setError(error.response.data.message);
         });
     } else {
@@ -64,8 +61,6 @@ class ShareKidModal extends React.Component {
   };
 
   render() {
-    const error = this.props.reducer.error;
-    console.log("check", this.props);
     return (
       <>
         <Modal>

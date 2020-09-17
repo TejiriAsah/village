@@ -48,7 +48,6 @@ class AddKid extends React.Component {
         }
       })
       .catch((error) => {
-        console.log("response error", error.response);
         this.props.setError(error.response.data.message);
       });
   };

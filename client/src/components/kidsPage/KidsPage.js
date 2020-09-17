@@ -85,8 +85,7 @@ class KidsPage extends React.Component {
     );
     expiryDate.setDate(expiryDate.getDate() + 1);
     let currDate = Date.now();
-    console.log("currdate", currDate);
-    console.log("expirydate", expiryDate);
+
     if (expiryDate - currDate < 0) {
       axios
         .delete("/kids/share/" + kid._id + "/" + username)

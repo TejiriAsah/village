@@ -116,7 +116,6 @@ kidRouter.put("/edit/:kidId", (req, res) => {
     },
     (error, oldKid) => {
       if (error) {
-        console.log("error is", error);
         return res.status(500).json({ message: error });
       }
       if (!oldKid) {

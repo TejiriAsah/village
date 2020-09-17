@@ -15,7 +15,6 @@ import logout from "../../assets/logout.png";
 class Home extends React.Component {
   logOut = () => {
     this.props.logoutUser();
-    console.log("logging user out", this.props);
   };
 
   //if session expires, redirect user to sign in page
@@ -23,7 +22,6 @@ class Home extends React.Component {
     if (
       prevProps.reducer.isAuthenticated !== this.props.reducer.isAuthenticated
     ) {
-      console.log("user is no longer authenticated");
       this.props.history.push("/app/login");
     }
   }

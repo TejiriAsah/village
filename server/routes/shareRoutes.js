@@ -38,7 +38,7 @@ shareRouter.post("/:username/:receiverusername/:kidId", (req, res) => {
             return res.status(404).json({ message: "profile not found" });
           } else {
             const kids = parent.receivedKids;
-            console.log("your kids:", kids);
+
             kid.expirationDate = req.body.expirationDate;
             kid.expirationTime = req.body.expirationTime;
             kids.push(kid);

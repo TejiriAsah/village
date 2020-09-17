@@ -39,7 +39,6 @@ class EditActivityModal extends React.Component {
       axios
         .get("/kids/activities/activity/" + kidId)
         .then((response) => {
-          console.log("the response for activity", response);
           this.setState({
             kidId: kidId,
             activityId: response.data._id,
@@ -72,7 +71,7 @@ class EditActivityModal extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.props.removeModal();
-          console.log("state.id", this.state.kidId);
+
           this.props.history.push("/kids/child/" + this.state.kidId);
           this.props.setError("");
         }

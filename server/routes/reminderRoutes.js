@@ -93,7 +93,7 @@ reminderRouter.delete("/:username/:reminderId", (req, res) => {
                 req.params.reminderId === reminderId._id.toString()
               );
             });
-            console.log(newReminders);
+
             Parent.findOneAndUpdate(
               { username: req.params.username },
               { $set: { reminders: newReminders } },

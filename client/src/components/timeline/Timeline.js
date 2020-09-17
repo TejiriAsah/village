@@ -63,7 +63,6 @@ class Timeline extends React.Component {
     axios
       .get("/profile/" + this.state.search)
       .then((response) => {
-        console.log("response", response);
         if (response.data) {
           this.setState({
             result: response.data,
@@ -81,12 +80,10 @@ class Timeline extends React.Component {
     axios
       .get("/posts/" + user.username)
       .then((response) => {
-        console.log("response", response);
         if (response.status === 200) {
           this.setState({
             posts: response.data,
           });
-          console.log("posts", this.state.posts);
         }
       })
       .catch((error) => {
