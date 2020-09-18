@@ -20,13 +20,13 @@ class SignUp extends React.Component {
   componentWillReceiveProps(nextProps) {
     //if user is successfully registered, redirect to timeline
     if (nextProps.reducer.isAuthenticated) {
-      this.props.history.push("/profile");
+      this.props.history.push("/timeline");
     }
   }
 
   componentDidMount() {
     if (this.props.reducer.isAuthenticated) {
-      this.props.history.push("/profile");
+      this.props.history.push("/timeline");
     }
   }
 

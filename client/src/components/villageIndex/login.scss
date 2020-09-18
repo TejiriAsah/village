@@ -2,13 +2,13 @@
 @import "../partials/mixins";
 
 .login {
-  background-color: $secondary;
+  background-color: $tertiary;
   width: 25rem;
   text-align: center;
   padding-bottom: 1.5rem;
   border-radius: 15px;
   &__heading {
-    color: $primary;
+    color: $secondary;
     padding-top: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -22,10 +22,10 @@
     width: 20rem;
     height: 4rem;
     padding: 0.5rem;
-    color: $primary;
+    color: $secondary;
     border-bottom: 1px solid $primary;
     &::placeholder {
-      color: $primary;
+      color: grey;
     }
   }
   &__btn {

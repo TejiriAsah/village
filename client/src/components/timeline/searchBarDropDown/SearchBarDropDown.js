@@ -49,9 +49,9 @@ const SearchBarDropDown = (props) => {
                       type="button"
                       key={index}
                       className="result__btn"
-                      onClick={() => {
+                      onClick={(e) => {
                         addBranch();
-                        onInputChange("", "search");
+                        onInputChange(e, "search");
                       }}
                     >
                       {added ? "Added!" : "Add branch"}

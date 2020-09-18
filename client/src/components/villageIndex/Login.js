@@ -17,13 +17,13 @@ class Login extends React.Component {
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.isAuthenticated) {
-      this.props.history.push("/profile");
+      this.props.history.push("/timeline");
     }
   }
 
   componentDidMount() {
     if (this.props.isAuthenticated) {
-      this.props.history.push("/profile");
+      this.props.history.push("/timeline");
     }
   }
 
