@@ -1,4 +1,5 @@
 @import "../partials/variables";
+@import "../partials/mixins";
 
 .branches {
   margin-left: 3rem;
@@ -11,7 +12,7 @@
 .branch-card {
   width: 30rem;
   display: flex;
-  border-bottom: 1px solid $background;
+  border-bottom: 1px solid $primary;
   padding-bottom: 0.5rem;
   &__content {
     width: 20rem;

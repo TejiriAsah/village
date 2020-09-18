@@ -1,6 +1,9 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
 .post {
   color: white;
-  border: 1px solid #ffffff;
+  border: 1px solid $secondary;
   margin-left: 0rem;
   margin-bottom: 2rem;
   border-radius: 6px;
@@ -32,8 +35,8 @@
     border: 0;
     display: flex;
     align-items: center;
-    background-color: #ffffff;
-    color: #552534;
+    background-color: $secondary;
+    color: $tertiary;
     font-size: 1rem;
     font-weight: normal;
     margin-right: 0.5rem;
@@ -42,9 +45,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #ffffff;
-    background-color: #ffffff;
-    color: #552534;
+    border-top: 1px solid $secondary;
+    background-color: $secondary;
+    color: $tertiary;
   }
   &__date {
     margin-right: 0.5rem;
@@ -61,6 +64,6 @@
 }
 
 .link-styleWhite-text {
-  color: #ffffff;
+  color: $secondary;
   text-decoration: none;
 }

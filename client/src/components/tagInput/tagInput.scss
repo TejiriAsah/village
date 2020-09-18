@@ -1,4 +1,5 @@
 @import "../partials/variables";
+@import "../partials/mixins";
 
 .tag-input {
   display: flex;
@@ -9,9 +10,9 @@
   width: 31rem;
   margin: 1rem 1.5rem;
   padding-left: 0.5rem;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid $secondary;
   &:focus-within {
-    border: 1px solid $background;
+    border: 1px solid $primary;
   }
 }
 
@@ -21,13 +22,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #552534;
+  color: $tertiary;
   padding: 0 8px;
   font-size: 14px;
   list-style: none;
   border-radius: 6px;
   margin: 0 0.5rem 0.5rem 0;
-  background: #ffffff;
+  background: $secondary;
 }
 
 .tag-title {
@@ -49,7 +50,7 @@
   text-align: center;
   font-size: 14px;
   margin-left: 8px;
-  color: $background;
+  color: $primary;
   border-radius: 50%;
   background: #fff;
   cursor: pointer;
@@ -61,19 +62,19 @@ input {
   height: 46px;
   font-size: 14px;
   padding: 4px 0 0 0;
-  color: white;
+  color: $secondary;
   &:focus {
     outline: none;
   }
   &::placeholder {
-    color: #ffffff;
+    color: $secondary;
   }
 }
 .bob2 {
   border: 0;
-  color: #ffffff;
-  background-color: #552534;
+  color: $secondary;
+  background-color: $primary;
   &::placeholder {
-    color: #ffffff;
+    color: $secondary;
   }
 }

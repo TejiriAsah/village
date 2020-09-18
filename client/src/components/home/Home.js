@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../store/Actions";
 import "./home.scss";
-import dad from "../../assets/Zaraki.png";
+import Baileymiranda from "../../assets/Baileymiranda.png";
 import hut from "../../assets/hut.png";
 import branch2 from "../../assets/branch2.png";
 import profile from "../../assets/profile.png";
@@ -31,7 +31,7 @@ class Home extends React.Component {
     return (
       <div className="navbar">
         <div className="navbar__profile">
-          <img src={dad} alt="profile" className="profilePic" />
+          <img src={Baileymiranda} alt="profile" className="profilePic" />
           <div className="profile__container">
             <p className="profile__box">{this.props.reducer.user.name}</p>
             <p className="profile__box">@{this.props.reducer.user.username}</p>

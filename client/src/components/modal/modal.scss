@@ -1,8 +1,9 @@
 @import "../partials/variables";
+@import "../partials/mixins";
 
 .modal {
   // background-color: white;
-  // color: #552534;
+  // color: $primary;
   // position: fixed;
   // z-index: 500;
   // width: 70%;
@@ -29,16 +30,16 @@
     width: 25rem;
     font-size: 1.1rem;
     box-sizing: border-box;
-    color: #552534;
+    color: $primary;
     height: 2rem;
     border: 0;
-    border-bottom: 1px solid #552534;
+    border-bottom: 1px solid $primary;
 
     padding-left: 0.5rem;
     // margin: 1rem 1.5rem;
     margin: 1rem;
     &::placeholder {
-      color: #552534;
+      color: $primary;
     }
   }
   &__btn {
@@ -48,8 +49,8 @@
     margin-top: 2rem;
   }
   &__btnChoices {
-    color: #ffffff;
-    background-color: #552534;
+    color: $secondary;
+    background-color: $primary;
     width: 7rem;
     height: 2rem;
     margin-bottom: 1rem;
@@ -78,7 +79,7 @@
   &__changePassword {
     width: 62%;
     background-color: white;
-    color: #552534;
+    color: $primary;
     position: fixed;
     z-index: 500;
     border-radius: 10px;
@@ -93,7 +94,7 @@
   &__addActivity {
     width: 60%;
     background-color: white;
-    color: #552534;
+    color: $primary;
     position: fixed;
     z-index: 500;
     border-radius: 10px;
@@ -108,7 +109,7 @@
   &__editActivity {
     width: 60%;
     background-color: white;
-    color: #552534;
+    color: $primary;
     position: fixed;
     z-index: 500;
     border-radius: 10px;
@@ -123,7 +124,7 @@
   &__shareKid {
     width: 60%;
     background-color: white;
-    color: #552534;
+    color: $primary;
     position: fixed;
     z-index: 500;
     border-radius: 10px;
@@ -137,7 +138,7 @@
   }
   &__deleteKid {
     background-color: white;
-    color: #552534;
+    color: $primary;
     position: fixed;
     z-index: 500;
     border-radius: 10px;

@@ -1,6 +1,9 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
 .btn-style {
-  color: #552534;
-  background-color: #ffffff;
+  color: $tertiary;
+  background-color: $secondary;
   width: 9rem;
   height: 2.3rem;
   margin-top: 1rem;
@@ -23,7 +26,7 @@
   }
   &__content {
     display: flex;
-    color: #ffffff;
+    color: $secondary;
   }
   &__info {
     margin-bottom: 2rem;

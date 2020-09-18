@@ -1,13 +1,14 @@
 @import "../partials/variables";
+@import "../partials/mixins";
 
 .login {
-  background-color: #ffffff;
+  background-color: $secondary;
   width: 25rem;
   text-align: center;
   padding-bottom: 1.5rem;
   border-radius: 15px;
   &__heading {
-    color: #552534;
+    color: $primary;
     padding-top: 1.5rem;
     margin-bottom: 2rem;
   }
@@ -21,16 +22,16 @@
     width: 20rem;
     height: 4rem;
     padding: 0.5rem;
-    color: #552534;
-    border-bottom: 1px solid #552534;
+    color: $primary;
+    border-bottom: 1px solid $primary;
     &::placeholder {
-      color: #552534;
+      color: $primary;
     }
   }
   &__btn {
     margin-top: 1rem;
-    color: #ffffff;
-    background-color: #552534;
+    color: $secondary;
+    background-color: $primary;
     width: 7rem;
     height: 2rem;
     margin-top: 1rem;
@@ -42,7 +43,7 @@
     justify-content: center;
   }
   &__alternative {
-    color: #552534;
+    color: $primary;
     font-size: 0.8rem;
     margin-left: 0.3rem;
   }

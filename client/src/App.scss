@@ -1,0 +1,12 @@
+@import "./components/partials/variables.scss";
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: $primary;
+
+  color: $secondary;
+}
+
+.tester {
+  display: flex;
+}

@@ -13,7 +13,7 @@
   margin-left: 2rem;
   border-radius: 15px;
   border: 1px solid white;
-  background-color: #ffffff;
+  background-color: $secondary;
   display: flex;
   flex-direction: column;
 
@@ -34,33 +34,33 @@
     font-weight: 500;
     text-align: center;
     margin-top: 0.5rem;
-    color: #552534;
+    color: $tertiary;
   }
   &__info {
     display: flex;
     flex-direction: column;
     height: 5rem;
     border-radius: 0px 0px 15px 15px;
-    background-color: #ffffff;
+    background-color: $secondary;
   }
   &__shareBtn {
-    border: 1px solid #552534;
+    border: 1px solid $primary;
     width: 4rem;
     height: 2rem;
     border-radius: 15px;
     margin-top: 0.5rem;
-    background-color: #552534;
-    color: #ffffff;
+    background-color: $primary;
+    color: $secondary;
   }
   &__sharing {
-    color: #552534;
+    color: $primary;
     padding-left: 0.5rem;
   }
   &__sharing-header {
     font-weight: 600;
   }
   &__deleteBtn {
-    background-color: #552534;
+    background-color: $primary;
     border: 0;
     margin-left: 13rem;
   }
@@ -72,8 +72,8 @@
 }
 
 .btn-style2 {
-  color: #552534;
-  background-color: #ffffff;
+  color: $tertiary;
+  background-color: $secondary;
   width: 7rem;
   height: 2rem;
   margin-top: 1rem;
@@ -84,8 +84,8 @@
 }
 
 .btn-style {
-  color: #552534;
-  background-color: #ffffff;
+  color: $tertiary;
+  background-color: $secondary;
   width: 9rem;
   height: 2.3rem;
   margin-top: 1rem;
@@ -96,8 +96,8 @@
 }
 
 .btn-style3 {
-  color: #552534;
-  background-color: #ffffff;
+  color: $tertiary;
+  background-color: $secondary;
   width: 8rem;
   height: 1.5rem;
   margin-left: 1rem;

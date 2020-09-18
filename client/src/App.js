@@ -4,7 +4,7 @@ import Home from "./components/home/Home";
 import ProfilePage from "./components/profilePage/ProfilePage";
 import Timeline from "./components/timeline/Timeline";
 import PostPage from "./components/postPage/PostPage";
-import "./App.css";
+import "./App.scss";
 import Login from "./components/villageIndex/Login";
 import SignUp from "./components/villageIndex/SignUp";
 import KidsPage from "./components/kidsPage/KidsPage";

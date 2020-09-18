@@ -1,3 +1,6 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
 .requests {
   margin-left: 2rem;
   display: flex;
@@ -39,8 +42,8 @@
 }
 
 .btn-style3 {
-  color: #552534;
-  background-color: #ffffff;
+  color: $tertiary;
+  background-color: $secondary;
   width: 8rem;
   height: 1.5rem;
   margin-left: 1rem;

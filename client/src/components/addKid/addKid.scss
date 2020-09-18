@@ -1,3 +1,6 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
 .addKid {
   &__header {
     margin-left: 1rem;
@@ -28,13 +31,13 @@
   width: 31rem;
   height: 2rem;
   border: 0;
-  color: #ffffff;
-  border-bottom: 1px solid #ffffff;
-  background-color: #552534;
+  color: $secondary;
+  border-bottom: 1px solid $secondary;
+  background-color: $primary;
   padding-left: 0.5rem;
   margin: 1rem 1.5rem;
   &::placeholder {
-    color: #ffffff;
+    color: $secondary;
   }
 }
 
