@@ -22,7 +22,7 @@
   border: 2px solid $primary;
   padding: 0.5rem;
   box-sizing: border-box;
-  border-radius: 5px;
+  border-radius: 15px;
   color: $secondary;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@
     position: absolute;
     left: 2;
     right: 0;
-    top: 70%;
+    top: 65%;
     border: 0;
     color: $secondary;
     background-color: $primary;

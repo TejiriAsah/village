@@ -80,5 +80,3 @@ const SearchBarDropDown = (props) => {
 };
 
 export default SearchBarDropDown;
-
-//make wrapper div, same width and height as textarea, give it relative and button absolute

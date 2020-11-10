@@ -16,10 +16,9 @@ const requestRoutes = require("./routes/requestRoutes");
 const shareRoutes = require("./routes/shareRoutes");
 const branchRoutes = require("./routes/branchRoutes");
 
-mongoose.connect(
-  "mongodb+srv://village:village@cluster0.p9psx.mongodb.net/village?retryWrites=true&w=majority",
-  { useNewUrlParser: true }
-);
+const URI = process.env.URI;
+
+mongoose.connect(URI, { useNewUrlParser: true });
 
 // Passport middleware
 app.use(passport.initialize());
@@ -30,6 +29,8 @@ const PORT = process.env.PORT;
 
 app.use(cors());
 app.use(express.json());
+// app.use(express.static("public"));
+// app.use("/static", express.static("public"));
 
 app.use("/", indexRoutes);
 app.use("/profile", parentRoutes);

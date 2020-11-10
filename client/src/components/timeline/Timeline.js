@@ -118,6 +118,9 @@ class Timeline extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.getPosts();
+          this.setState({
+            postMessage: "",
+          });
         }
       })
       .catch((error) => {

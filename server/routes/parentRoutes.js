@@ -2,6 +2,10 @@ const express = require("express");
 const parentRouter = express.Router();
 const brcypt = require("bcryptjs");
 const Parent = require("../models/Parent");
+// const public = require("../public/ResidentMama.png");
+
+require("dotenv").config();
+const PORT = process.env.PORT;
 
 //get parent profile route
 parentRouter.get("/:username", (req, res) => {
@@ -80,5 +84,9 @@ parentRouter.get("/sharedkids/:username", (req, res) => {
     }
   });
 });
+
+// parentRouter.get("/image/:username", (req, res) => {
+//   return res.sendFile(__dirname + req.params.username + ".png");
+// });
 
 module.exports = parentRouter;

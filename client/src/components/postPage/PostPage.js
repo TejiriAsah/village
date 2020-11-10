@@ -45,6 +45,9 @@ class PostPage extends React.Component {
       .then((response) => {
         if (response.status === 200) {
           this.getIndividualPost();
+          this.setState({
+            newComment: "",
+          });
         }
       })
       .catch((error) => console.log("your error", error));

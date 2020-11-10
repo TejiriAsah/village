@@ -2,18 +2,6 @@
 @import "../partials/mixins";
 
 .modal {
-  // background-color: white;
-  // color: $primary;
-  // position: fixed;
-  // z-index: 500;
-  // width: 70%;
-  // border: 1px solid black;
-  // box-shadow: 1px 1px 1px black;
-  // padding: 16px;
-  // // left: 15%;
-  // top: 20%;
-  // box-sizing: border-box;
-  // transition: all 0.3s ease-out;
   &__heading {
     padding-top: 1rem;
     margin-left: 1.5rem;
@@ -34,9 +22,7 @@
     height: 2rem;
     border: 0;
     border-bottom: 1px solid $primary;
-
     padding-left: 0.5rem;
-    // margin: 1rem 1.5rem;
     margin: 1rem;
     &::placeholder {
       color: $primary;
@@ -78,76 +64,23 @@
   }
   &__changePassword {
     width: 62%;
-    background-color: white;
-    color: $primary;
-    position: fixed;
-    z-index: 500;
-    border-radius: 10px;
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    padding: 16px;
-    // left: 15%;
-    top: 20%;
-    box-sizing: border-box;
-    transition: all 0.3s ease-out;
+    @include modal-style;
   }
   &__addActivity {
     width: 60%;
-    background-color: white;
-    color: $primary;
-    position: fixed;
-    z-index: 500;
-    border-radius: 10px;
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    padding: 16px;
-    // left: 15%;
-    top: 20%;
-    box-sizing: border-box;
-    transition: all 0.3s ease-out;
+    @include modal-style;
   }
   &__editActivity {
     width: 60%;
-    background-color: white;
-    color: $primary;
-    position: fixed;
-    z-index: 500;
-    border-radius: 10px;
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    padding: 16px;
-    // left: 15%;
-    top: 20%;
-    box-sizing: border-box;
-    transition: all 0.3s ease-out;
+    @include modal-style;
   }
   &__shareKid {
     width: 60%;
-    background-color: white;
-    color: $primary;
-    position: fixed;
-    z-index: 500;
-    border-radius: 10px;
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    padding: 16px;
     left: 15%;
-    top: 20%;
-    box-sizing: border-box;
-    transition: all 0.3s ease-out;
+    @include modal-style;
   }
   &__deleteKid {
-    background-color: white;
-    color: $primary;
-    position: fixed;
-    z-index: 500;
-    border-radius: 10px;
-    border: 1px solid black;
-    box-shadow: 1px 1px 1px black;
-    padding: 16px;
     left: 15rem;
-    top: 20%;
-    box-sizing: border-box;
-    transition: all 0.3s ease-out;
+    @include modal-style;
   }
 }

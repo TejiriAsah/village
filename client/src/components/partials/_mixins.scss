@@ -49,3 +49,17 @@
   border: 0;
   border-radius: 15px;
 }
+
+@mixin modal-style {
+  background-color: white;
+  color: $primary;
+  position: fixed;
+  z-index: 500;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 1px 1px 1px black;
+  padding: 1rem;
+  box-sizing: border-box;
+  transition: all 0.3s ease-out;
+  top: 20%;
+}
