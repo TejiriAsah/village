@@ -18,7 +18,10 @@ const branchRoutes = require("./routes/branchRoutes");
 
 const URI = process.env.URI;
 
-mongoose.connect(URI, { useNewUrlParser: true });
+mongoose.connect(
+  "mongodb+srv://village:village@cluster0.p9psx.mongodb.net/village?retryWrites=true&w=majority",
+  { useNewUrlParser: true }
+);
 
 // Passport middleware
 app.use(passport.initialize());
@@ -42,6 +45,6 @@ app.use("/requests", requestRoutes);
 app.use("/kids/share", shareRoutes);
 app.use("/branches", branchRoutes);
 
-app.listen(PORT, () => {
+app.listen(8080, () => {
   console.log(`Successfully started listening on Port: ${PORT}`);
 });
