@@ -18,22 +18,26 @@ const branchRoutes = require("./routes/branchRoutes");
 
 const URI = process.env.URI;
 
-mongoose.connect(
-  "mongodb+srv://village:village@cluster0.p9psx.mongodb.net/village?retryWrites=true&w=majority",
-  { useNewUrlParser: true }
-);
+mongoose.connect(URI, { useNewUrlParser: true });
 
 // Passport middleware
 app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8080;
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
-app.use("/static", express.static("public"));
+
+//serve static assets if in production
+if (process.env.NODE_ENV === "production") {
+  //set static folder
+  app.use(express.static("client/build"));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
+}
 
 app.use("/", indexRoutes);
 app.use("/profile", parentRoutes);
