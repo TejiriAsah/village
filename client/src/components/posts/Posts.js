@@ -15,6 +15,7 @@ class Posts extends React.Component {
   }
 
   render() {
+    console.log("posts", this.props.posts);
     const posts = this.props.posts.reverse();
     return (
       <div>
