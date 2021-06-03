@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const express = require("express");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const app = express();
 const passport = require("passport");
@@ -19,7 +20,7 @@ const branchRoutes = require("./routes/branchRoutes");
 
 const URI = process.env.URI;
 
-mongoose.connect(URI, { useNewUrlParser: true });
+mongoose.connect(URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 // Passport middleware
 app.use(passport.initialize());
@@ -28,8 +29,10 @@ require("./config/passport")(passport);
 
 const PORT = process.env.PORT || 8080;
 
-app.use(cors());
-app.use(express.json());
+// app.use(cors());
+// app.use(express.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
 
 //serve static assets if in production
 if (process.env.NODE_ENV === "production") {

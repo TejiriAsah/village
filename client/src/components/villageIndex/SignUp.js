@@ -36,7 +36,6 @@ class SignUp extends React.Component {
     });
   };
   submitHandler = () => {
-    console.log("here");
     const newProfile = {
       name: this.state.name,
       username: this.state.username,
